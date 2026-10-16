@@ -1,0 +1,1771 @@
+{
+  "metadata": {
+    "milestone": "M10",
+    "study_name": "MempoolGuard Feature Group Ablation Study",
+    "generated_at": "2026-10-01T05:11:32Z",
+    "total_runs": 42,
+    "canonical_features_count": 30,
+    "feature_groups": {
+      "G1_transaction_value": {
+        "id": "G1",
+        "name": "Transaction Value & Core",
+        "count": 4,
+        "features": [
+          "value_eth",
+          "value_wei_log10",
+          "nonce",
+          "tx_type"
+        ],
+        "description": "Intrinsic financial transfer magnitude, sender sequence nonce, and transaction type classification."
+      },
+      "G2_gas_fees": {
+        "id": "G2",
+        "name": "Gas & Fee Mechanics",
+        "count": 6,
+        "features": [
+          "gas_limit",
+          "gas_price_gwei",
+          "max_fee_per_gas_gwei",
+          "max_priority_fee_per_gas_gwei",
+          "window_gas_price_mean_gwei",
+          "gas_price_to_window_ratio"
+        ],
+        "description": "Absolute gas pricing, EIP-1559 fee priority, and pricing deviation ratios relative to local 60s windows."
+      },
+      "G3_calldata_interaction": {
+        "id": "G3",
+        "name": "Calldata & Interaction",
+        "count": 4,
+        "features": [
+          "calldata_size_bytes",
+          "is_contract_call",
+          "is_contract_creation",
+          "function_selector_hash"
+        ],
+        "description": "Smart contract execution indicators, calldata payload volume, and 4-byte EVM function selectors."
+      },
+      "G4_account_history": {
+        "id": "G4",
+        "name": "Account History Profile",
+        "count": 6,
+        "features": [
+          "sender_historical_tx_count",
+          "receiver_historical_tx_count",
+          "sender_receiver_tx_count",
+          "sender_receiver_existing_relationship",
+          "sender_historical_avg_value_eth",
+          "sender_historical_avg_gas_limit"
+        ],
+        "description": "Historical transaction counts, sender-receiver prior interaction history, and long-term average value/gas baselines strictly prior to first_seen_at."
+      },
+      "G5_temporal_burst": {
+        "id": "G5",
+        "name": "Temporal Burst & Flow",
+        "count": 6,
+        "features": [
+          "window_tx_count_60s",
+          "window_tx_count_10s",
+          "window_unique_receivers_60s",
+          "is_burst_activity",
+          "is_fan_out",
+          "is_repeated_transfer"
+        ],
+        "description": "Short-horizon mempool velocity, burst flags, multi-recipient fan-out dispersion, and identical-value transfer loops."
+      },
+      "G6_graph_topology": {
+        "id": "G6",
+        "name": "Graph Topology & Centrality",
+        "count": 4,
+        "features": [
+          "sender_out_degree",
+          "receiver_in_degree",
+          "sender_pagerank",
+          "receiver_pagerank"
+        ],
+        "description": "Transaction graph connectivity metrics, node in/out degree, and network centrality PageRank scores."
+      }
+    }
+  },
+  "results": [
+    {
+      "dataset": "M5_Primary_Chronological",
+      "model": "RuleBaseline",
+      "config_id": "full_30_features",
+      "config_name": "Full Baseline",
+      "removed_group": null,
+      "removed_group_name": "None (Reference Baseline)",
+      "feature_count": 30,
+      "fit_time_ms": 0.0,
+      "inference_latency_ms": 0.044,
+      "threshold": 0.5,
+      "sample_count": 6,
+      "support": {
+        "class_0_benign": 0,
+        "class_1_anomaly": 6
+      },
+      "accuracy": 0.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1_score": 0.0,
+      "pr_auc": null,
+      "roc_auc": null,
+      "false_positive_rate": null,
+      "confusion_matrix": [
+        [
+          0,
+          0
+        ],
+        [
+          6,
+          0
+        ]
+      ],
+      "single_class_warning": "Split contains exclusively class 1 (support: 6). ROC-AUC, PR-AUC, and FPR cannot be meaningfully computed.",
+      "delta_precision": 0.0,
+      "delta_recall": 0.0,
+      "delta_f1": 0.0,
+      "delta_pr_auc": null,
+      "delta_latency_ms": 0.0
+    },
+    {
+      "dataset": "M5_Primary_Chronological",
+      "model": "LogisticRegression",
+      "config_id": "full_30_features",
+      "config_name": "Full Baseline",
+      "removed_group": null,
+      "removed_group_name": "None (Reference Baseline)",
+      "feature_count": 30,
+      "fit_time_ms": 6.246,
+      "inference_latency_ms": 0.129,
+      "threshold": 0.5,
+      "sample_count": 6,
+      "support": {
+        "class_0_benign": 0,
+        "class_1_anomaly": 6
+      },
+      "accuracy": 0.8333333333333334,
+      "precision": 1.0,
+      "recall": 0.8333333333333334,
+      "f1_score": 0.9090909090909091,
+      "pr_auc": null,
+      "roc_auc": null,
+      "false_positive_rate": null,
+      "confusion_matrix": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          5
+        ]
+      ],
+      "single_class_warning": "Split contains exclusively class 1 (support: 6). ROC-AUC, PR-AUC, and FPR cannot be meaningfully computed.",
+      "delta_precision": 0.0,
+      "delta_recall": 0.0,
+      "delta_f1": 0.0,
+      "delta_pr_auc": null,
+      "delta_latency_ms": 0.0
+    },
+    {
+      "dataset": "M5_Primary_Chronological",
+      "model": "XGBoost",
+      "config_id": "full_30_features",
+      "config_name": "Full Baseline",
+      "removed_group": null,
+      "removed_group_name": "None (Reference Baseline)",
+      "feature_count": 30,
+      "fit_time_ms": 52.631,
+      "inference_latency_ms": 0.164,
+      "threshold": 0.5,
+      "sample_count": 6,
+      "support": {
+        "class_0_benign": 0,
+        "class_1_anomaly": 6
+      },
+      "accuracy": 0.8333333333333334,
+      "precision": 1.0,
+      "recall": 0.8333333333333334,
+      "f1_score": 0.9090909090909091,
+      "pr_auc": null,
+      "roc_auc": null,
+      "false_positive_rate": null,
+      "confusion_matrix": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          5
+        ]
+      ],
+      "single_class_warning": "Split contains exclusively class 1 (support: 6). ROC-AUC, PR-AUC, and FPR cannot be meaningfully computed.",
+      "delta_precision": 0.0,
+      "delta_recall": 0.0,
+      "delta_f1": 0.0,
+      "delta_pr_auc": null,
+      "delta_latency_ms": 0.0
+    },
+    {
+      "dataset": "M5_Primary_Chronological",
+      "model": "RuleBaseline",
+      "config_id": "minus_G1_transaction_value",
+      "config_name": "Minus G1 (Transaction Value & Core)",
+      "removed_group": "G1",
+      "removed_group_name": "Transaction Value & Core",
+      "feature_count": 26,
+      "fit_time_ms": 0.0,
+      "inference_latency_ms": 0.059,
+      "threshold": 0.5,
+      "sample_count": 6,
+      "support": {
+        "class_0_benign": 0,
+        "class_1_anomaly": 6
+      },
+      "accuracy": 0.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1_score": 0.0,
+      "pr_auc": null,
+      "roc_auc": null,
+      "false_positive_rate": null,
+      "confusion_matrix": [
+        [
+          0,
+          0
+        ],
+        [
+          6,
+          0
+        ]
+      ],
+      "single_class_warning": "Split contains exclusively class 1 (support: 6). ROC-AUC, PR-AUC, and FPR cannot be meaningfully computed.",
+      "delta_precision": 0.0,
+      "delta_recall": 0.0,
+      "delta_f1": 0.0,
+      "delta_pr_auc": null,
+      "delta_latency_ms": 0.015
+    },
+    {
+      "dataset": "M5_Primary_Chronological",
+      "model": "LogisticRegression",
+      "config_id": "minus_G1_transaction_value",
+      "config_name": "Minus G1 (Transaction Value & Core)",
+      "removed_group": "G1",
+      "removed_group_name": "Transaction Value & Core",
+      "feature_count": 26,
+      "fit_time_ms": 6.298,
+      "inference_latency_ms": 0.124,
+      "threshold": 0.5,
+      "sample_count": 6,
+      "support": {
+        "class_0_benign": 0,
+        "class_1_anomaly": 6
+      },
+      "accuracy": 0.8333333333333334,
+      "precision": 1.0,
+      "recall": 0.8333333333333334,
+      "f1_score": 0.9090909090909091,
+      "pr_auc": null,
+      "roc_auc": null,
+      "false_positive_rate": null,
+      "confusion_matrix": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          5
+        ]
+      ],
+      "single_class_warning": "Split contains exclusively class 1 (support: 6). ROC-AUC, PR-AUC, and FPR cannot be meaningfully computed.",
+      "delta_precision": 0.0,
+      "delta_recall": 0.0,
+      "delta_f1": 0.0,
+      "delta_pr_auc": null,
+      "delta_latency_ms": -0.005
+    },
+    {
+      "dataset": "M5_Primary_Chronological",
+      "model": "XGBoost",
+      "config_id": "minus_G1_transaction_value",
+      "config_name": "Minus G1 (Transaction Value & Core)",
+      "removed_group": "G1",
+      "removed_group_name": "Transaction Value & Core",
+      "feature_count": 26,
+      "fit_time_ms": 48.709,
+      "inference_latency_ms": 0.171,
+      "threshold": 0.5,
+      "sample_count": 6,
+      "support": {
+        "class_0_benign": 0,
+        "class_1_anomaly": 6
+      },
+      "accuracy": 0.8333333333333334,
+      "precision": 1.0,
+      "recall": 0.8333333333333334,
+      "f1_score": 0.9090909090909091,
+      "pr_auc": null,
+      "roc_auc": null,
+      "false_positive_rate": null,
+      "confusion_matrix": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          5
+        ]
+      ],
+      "single_class_warning": "Split contains exclusively class 1 (support: 6). ROC-AUC, PR-AUC, and FPR cannot be meaningfully computed.",
+      "delta_precision": 0.0,
+      "delta_recall": 0.0,
+      "delta_f1": 0.0,
+      "delta_pr_auc": null,
+      "delta_latency_ms": 0.007
+    },
+    {
+      "dataset": "M5_Primary_Chronological",
+      "model": "RuleBaseline",
+      "config_id": "minus_G2_gas_fees",
+      "config_name": "Minus G2 (Gas & Fee Mechanics)",
+      "removed_group": "G2",
+      "removed_group_name": "Gas & Fee Mechanics",
+      "feature_count": 24,
+      "fit_time_ms": 0.0,
+      "inference_latency_ms": 0.058,
+      "threshold": 0.5,
+      "sample_count": 6,
+      "support": {
+        "class_0_benign": 0,
+        "class_1_anomaly": 6
+      },
+      "accuracy": 0.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1_score": 0.0,
+      "pr_auc": null,
+      "roc_auc": null,
+      "false_positive_rate": null,
+      "confusion_matrix": [
+        [
+          0,
+          0
+        ],
+        [
+          6,
+          0
+        ]
+      ],
+      "single_class_warning": "Split contains exclusively class 1 (support: 6). ROC-AUC, PR-AUC, and FPR cannot be meaningfully computed.",
+      "delta_precision": 0.0,
+      "delta_recall": 0.0,
+      "delta_f1": 0.0,
+      "delta_pr_auc": null,
+      "delta_latency_ms": 0.014
+    },
+    {
+      "dataset": "M5_Primary_Chronological",
+      "model": "LogisticRegression",
+      "config_id": "minus_G2_gas_fees",
+      "config_name": "Minus G2 (Gas & Fee Mechanics)",
+      "removed_group": "G2",
+      "removed_group_name": "Gas & Fee Mechanics",
+      "feature_count": 24,
+      "fit_time_ms": 7.335,
+      "inference_latency_ms": 0.13,
+      "threshold": 0.5,
+      "sample_count": 6,
+      "support": {
+        "class_0_benign": 0,
+        "class_1_anomaly": 6
+      },
+      "accuracy": 0.8333333333333334,
+      "precision": 1.0,
+      "recall": 0.8333333333333334,
+      "f1_score": 0.9090909090909091,
+      "pr_auc": null,
+      "roc_auc": null,
+      "false_positive_rate": null,
+      "confusion_matrix": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          5
+        ]
+      ],
+      "single_class_warning": "Split contains exclusively class 1 (support: 6). ROC-AUC, PR-AUC, and FPR cannot be meaningfully computed.",
+      "delta_precision": 0.0,
+      "delta_recall": 0.0,
+      "delta_f1": 0.0,
+      "delta_pr_auc": null,
+      "delta_latency_ms": 0.001
+    },
+    {
+      "dataset": "M5_Primary_Chronological",
+      "model": "XGBoost",
+      "config_id": "minus_G2_gas_fees",
+      "config_name": "Minus G2 (Gas & Fee Mechanics)",
+      "removed_group": "G2",
+      "removed_group_name": "Gas & Fee Mechanics",
+      "feature_count": 24,
+      "fit_time_ms": 49.381,
+      "inference_latency_ms": 0.178,
+      "threshold": 0.5,
+      "sample_count": 6,
+      "support": {
+        "class_0_benign": 0,
+        "class_1_anomaly": 6
+      },
+      "accuracy": 0.8333333333333334,
+      "precision": 1.0,
+      "recall": 0.8333333333333334,
+      "f1_score": 0.9090909090909091,
+      "pr_auc": null,
+      "roc_auc": null,
+      "false_positive_rate": null,
+      "confusion_matrix": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          5
+        ]
+      ],
+      "single_class_warning": "Split contains exclusively class 1 (support: 6). ROC-AUC, PR-AUC, and FPR cannot be meaningfully computed.",
+      "delta_precision": 0.0,
+      "delta_recall": 0.0,
+      "delta_f1": 0.0,
+      "delta_pr_auc": null,
+      "delta_latency_ms": 0.014
+    },
+    {
+      "dataset": "M5_Primary_Chronological",
+      "model": "RuleBaseline",
+      "config_id": "minus_G3_calldata_interaction",
+      "config_name": "Minus G3 (Calldata & Interaction)",
+      "removed_group": "G3",
+      "removed_group_name": "Calldata & Interaction",
+      "feature_count": 26,
+      "fit_time_ms": 0.0,
+      "inference_latency_ms": 0.068,
+      "threshold": 0.5,
+      "sample_count": 6,
+      "support": {
+        "class_0_benign": 0,
+        "class_1_anomaly": 6
+      },
+      "accuracy": 0.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1_score": 0.0,
+      "pr_auc": null,
+      "roc_auc": null,
+      "false_positive_rate": null,
+      "confusion_matrix": [
+        [
+          0,
+          0
+        ],
+        [
+          6,
+          0
+        ]
+      ],
+      "single_class_warning": "Split contains exclusively class 1 (support: 6). ROC-AUC, PR-AUC, and FPR cannot be meaningfully computed.",
+      "delta_precision": 0.0,
+      "delta_recall": 0.0,
+      "delta_f1": 0.0,
+      "delta_pr_auc": null,
+      "delta_latency_ms": 0.024
+    },
+    {
+      "dataset": "M5_Primary_Chronological",
+      "model": "LogisticRegression",
+      "config_id": "minus_G3_calldata_interaction",
+      "config_name": "Minus G3 (Calldata & Interaction)",
+      "removed_group": "G3",
+      "removed_group_name": "Calldata & Interaction",
+      "feature_count": 26,
+      "fit_time_ms": 6.612,
+      "inference_latency_ms": 0.125,
+      "threshold": 0.5,
+      "sample_count": 6,
+      "support": {
+        "class_0_benign": 0,
+        "class_1_anomaly": 6
+      },
+      "accuracy": 0.8333333333333334,
+      "precision": 1.0,
+      "recall": 0.8333333333333334,
+      "f1_score": 0.9090909090909091,
+      "pr_auc": null,
+      "roc_auc": null,
+      "false_positive_rate": null,
+      "confusion_matrix": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          5
+        ]
+      ],
+      "single_class_warning": "Split contains exclusively class 1 (support: 6). ROC-AUC, PR-AUC, and FPR cannot be meaningfully computed.",
+      "delta_precision": 0.0,
+      "delta_recall": 0.0,
+      "delta_f1": 0.0,
+      "delta_pr_auc": null,
+      "delta_latency_ms": -0.004
+    },
+    {
+      "dataset": "M5_Primary_Chronological",
+      "model": "XGBoost",
+      "config_id": "minus_G3_calldata_interaction",
+      "config_name": "Minus G3 (Calldata & Interaction)",
+      "removed_group": "G3",
+      "removed_group_name": "Calldata & Interaction",
+      "feature_count": 26,
+      "fit_time_ms": 49.217,
+      "inference_latency_ms": 0.17,
+      "threshold": 0.5,
+      "sample_count": 6,
+      "support": {
+        "class_0_benign": 0,
+        "class_1_anomaly": 6
+      },
+      "accuracy": 0.8333333333333334,
+      "precision": 1.0,
+      "recall": 0.8333333333333334,
+      "f1_score": 0.9090909090909091,
+      "pr_auc": null,
+      "roc_auc": null,
+      "false_positive_rate": null,
+      "confusion_matrix": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          5
+        ]
+      ],
+      "single_class_warning": "Split contains exclusively class 1 (support: 6). ROC-AUC, PR-AUC, and FPR cannot be meaningfully computed.",
+      "delta_precision": 0.0,
+      "delta_recall": 0.0,
+      "delta_f1": 0.0,
+      "delta_pr_auc": null,
+      "delta_latency_ms": 0.006
+    },
+    {
+      "dataset": "M5_Primary_Chronological",
+      "model": "RuleBaseline",
+      "config_id": "minus_G4_account_history",
+      "config_name": "Minus G4 (Account History Profile)",
+      "removed_group": "G4",
+      "removed_group_name": "Account History Profile",
+      "feature_count": 24,
+      "fit_time_ms": 0.0,
+      "inference_latency_ms": 0.056,
+      "threshold": 0.5,
+      "sample_count": 6,
+      "support": {
+        "class_0_benign": 0,
+        "class_1_anomaly": 6
+      },
+      "accuracy": 0.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1_score": 0.0,
+      "pr_auc": null,
+      "roc_auc": null,
+      "false_positive_rate": null,
+      "confusion_matrix": [
+        [
+          0,
+          0
+        ],
+        [
+          6,
+          0
+        ]
+      ],
+      "single_class_warning": "Split contains exclusively class 1 (support: 6). ROC-AUC, PR-AUC, and FPR cannot be meaningfully computed.",
+      "delta_precision": 0.0,
+      "delta_recall": 0.0,
+      "delta_f1": 0.0,
+      "delta_pr_auc": null,
+      "delta_latency_ms": 0.012
+    },
+    {
+      "dataset": "M5_Primary_Chronological",
+      "model": "LogisticRegression",
+      "config_id": "minus_G4_account_history",
+      "config_name": "Minus G4 (Account History Profile)",
+      "removed_group": "G4",
+      "removed_group_name": "Account History Profile",
+      "feature_count": 24,
+      "fit_time_ms": 6.959,
+      "inference_latency_ms": 0.124,
+      "threshold": 0.5,
+      "sample_count": 6,
+      "support": {
+        "class_0_benign": 0,
+        "class_1_anomaly": 6
+      },
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0,
+      "pr_auc": null,
+      "roc_auc": null,
+      "false_positive_rate": null,
+      "confusion_matrix": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          6
+        ]
+      ],
+      "single_class_warning": "Split contains exclusively class 1 (support: 6). ROC-AUC, PR-AUC, and FPR cannot be meaningfully computed.",
+      "delta_precision": 0.0,
+      "delta_recall": 0.1667,
+      "delta_f1": 0.0909,
+      "delta_pr_auc": null,
+      "delta_latency_ms": -0.005
+    },
+    {
+      "dataset": "M5_Primary_Chronological",
+      "model": "XGBoost",
+      "config_id": "minus_G4_account_history",
+      "config_name": "Minus G4 (Account History Profile)",
+      "removed_group": "G4",
+      "removed_group_name": "Account History Profile",
+      "feature_count": 24,
+      "fit_time_ms": 52.061,
+      "inference_latency_ms": 0.161,
+      "threshold": 0.5,
+      "sample_count": 6,
+      "support": {
+        "class_0_benign": 0,
+        "class_1_anomaly": 6
+      },
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0,
+      "pr_auc": null,
+      "roc_auc": null,
+      "false_positive_rate": null,
+      "confusion_matrix": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          6
+        ]
+      ],
+      "single_class_warning": "Split contains exclusively class 1 (support: 6). ROC-AUC, PR-AUC, and FPR cannot be meaningfully computed.",
+      "delta_precision": 0.0,
+      "delta_recall": 0.1667,
+      "delta_f1": 0.0909,
+      "delta_pr_auc": null,
+      "delta_latency_ms": -0.003
+    },
+    {
+      "dataset": "M5_Primary_Chronological",
+      "model": "RuleBaseline",
+      "config_id": "minus_G5_temporal_burst",
+      "config_name": "Minus G5 (Temporal Burst & Flow)",
+      "removed_group": "G5",
+      "removed_group_name": "Temporal Burst & Flow",
+      "feature_count": 24,
+      "fit_time_ms": 0.0,
+      "inference_latency_ms": 0.057,
+      "threshold": 0.5,
+      "sample_count": 6,
+      "support": {
+        "class_0_benign": 0,
+        "class_1_anomaly": 6
+      },
+      "accuracy": 0.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1_score": 0.0,
+      "pr_auc": null,
+      "roc_auc": null,
+      "false_positive_rate": null,
+      "confusion_matrix": [
+        [
+          0,
+          0
+        ],
+        [
+          6,
+          0
+        ]
+      ],
+      "single_class_warning": "Split contains exclusively class 1 (support: 6). ROC-AUC, PR-AUC, and FPR cannot be meaningfully computed.",
+      "delta_precision": 0.0,
+      "delta_recall": 0.0,
+      "delta_f1": 0.0,
+      "delta_pr_auc": null,
+      "delta_latency_ms": 0.013
+    },
+    {
+      "dataset": "M5_Primary_Chronological",
+      "model": "LogisticRegression",
+      "config_id": "minus_G5_temporal_burst",
+      "config_name": "Minus G5 (Temporal Burst & Flow)",
+      "removed_group": "G5",
+      "removed_group_name": "Temporal Burst & Flow",
+      "feature_count": 24,
+      "fit_time_ms": 6.89,
+      "inference_latency_ms": 0.125,
+      "threshold": 0.5,
+      "sample_count": 6,
+      "support": {
+        "class_0_benign": 0,
+        "class_1_anomaly": 6
+      },
+      "accuracy": 0.8333333333333334,
+      "precision": 1.0,
+      "recall": 0.8333333333333334,
+      "f1_score": 0.9090909090909091,
+      "pr_auc": null,
+      "roc_auc": null,
+      "false_positive_rate": null,
+      "confusion_matrix": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          5
+        ]
+      ],
+      "single_class_warning": "Split contains exclusively class 1 (support: 6). ROC-AUC, PR-AUC, and FPR cannot be meaningfully computed.",
+      "delta_precision": 0.0,
+      "delta_recall": 0.0,
+      "delta_f1": 0.0,
+      "delta_pr_auc": null,
+      "delta_latency_ms": -0.004
+    },
+    {
+      "dataset": "M5_Primary_Chronological",
+      "model": "XGBoost",
+      "config_id": "minus_G5_temporal_burst",
+      "config_name": "Minus G5 (Temporal Burst & Flow)",
+      "removed_group": "G5",
+      "removed_group_name": "Temporal Burst & Flow",
+      "feature_count": 24,
+      "fit_time_ms": 48.588,
+      "inference_latency_ms": 0.163,
+      "threshold": 0.5,
+      "sample_count": 6,
+      "support": {
+        "class_0_benign": 0,
+        "class_1_anomaly": 6
+      },
+      "accuracy": 0.8333333333333334,
+      "precision": 1.0,
+      "recall": 0.8333333333333334,
+      "f1_score": 0.9090909090909091,
+      "pr_auc": null,
+      "roc_auc": null,
+      "false_positive_rate": null,
+      "confusion_matrix": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          5
+        ]
+      ],
+      "single_class_warning": "Split contains exclusively class 1 (support: 6). ROC-AUC, PR-AUC, and FPR cannot be meaningfully computed.",
+      "delta_precision": 0.0,
+      "delta_recall": 0.0,
+      "delta_f1": 0.0,
+      "delta_pr_auc": null,
+      "delta_latency_ms": -0.001
+    },
+    {
+      "dataset": "M5_Primary_Chronological",
+      "model": "RuleBaseline",
+      "config_id": "minus_G6_graph_topology",
+      "config_name": "Minus G6 (Graph Topology & Centrality)",
+      "removed_group": "G6",
+      "removed_group_name": "Graph Topology & Centrality",
+      "feature_count": 26,
+      "fit_time_ms": 0.0,
+      "inference_latency_ms": 0.058,
+      "threshold": 0.5,
+      "sample_count": 6,
+      "support": {
+        "class_0_benign": 0,
+        "class_1_anomaly": 6
+      },
+      "accuracy": 0.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1_score": 0.0,
+      "pr_auc": null,
+      "roc_auc": null,
+      "false_positive_rate": null,
+      "confusion_matrix": [
+        [
+          0,
+          0
+        ],
+        [
+          6,
+          0
+        ]
+      ],
+      "single_class_warning": "Split contains exclusively class 1 (support: 6). ROC-AUC, PR-AUC, and FPR cannot be meaningfully computed.",
+      "delta_precision": 0.0,
+      "delta_recall": 0.0,
+      "delta_f1": 0.0,
+      "delta_pr_auc": null,
+      "delta_latency_ms": 0.014
+    },
+    {
+      "dataset": "M5_Primary_Chronological",
+      "model": "LogisticRegression",
+      "config_id": "minus_G6_graph_topology",
+      "config_name": "Minus G6 (Graph Topology & Centrality)",
+      "removed_group": "G6",
+      "removed_group_name": "Graph Topology & Centrality",
+      "feature_count": 26,
+      "fit_time_ms": 6.33,
+      "inference_latency_ms": 0.127,
+      "threshold": 0.5,
+      "sample_count": 6,
+      "support": {
+        "class_0_benign": 0,
+        "class_1_anomaly": 6
+      },
+      "accuracy": 0.8333333333333334,
+      "precision": 1.0,
+      "recall": 0.8333333333333334,
+      "f1_score": 0.9090909090909091,
+      "pr_auc": null,
+      "roc_auc": null,
+      "false_positive_rate": null,
+      "confusion_matrix": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          5
+        ]
+      ],
+      "single_class_warning": "Split contains exclusively class 1 (support: 6). ROC-AUC, PR-AUC, and FPR cannot be meaningfully computed.",
+      "delta_precision": 0.0,
+      "delta_recall": 0.0,
+      "delta_f1": 0.0,
+      "delta_pr_auc": null,
+      "delta_latency_ms": -0.002
+    },
+    {
+      "dataset": "M5_Primary_Chronological",
+      "model": "XGBoost",
+      "config_id": "minus_G6_graph_topology",
+      "config_name": "Minus G6 (Graph Topology & Centrality)",
+      "removed_group": "G6",
+      "removed_group_name": "Graph Topology & Centrality",
+      "feature_count": 26,
+      "fit_time_ms": 46.994,
+      "inference_latency_ms": 0.164,
+      "threshold": 0.5,
+      "sample_count": 6,
+      "support": {
+        "class_0_benign": 0,
+        "class_1_anomaly": 6
+      },
+      "accuracy": 0.8333333333333334,
+      "precision": 1.0,
+      "recall": 0.8333333333333334,
+      "f1_score": 0.9090909090909091,
+      "pr_auc": null,
+      "roc_auc": null,
+      "false_positive_rate": null,
+      "confusion_matrix": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          5
+        ]
+      ],
+      "single_class_warning": "Split contains exclusively class 1 (support: 6). ROC-AUC, PR-AUC, and FPR cannot be meaningfully computed.",
+      "delta_precision": 0.0,
+      "delta_recall": 0.0,
+      "delta_f1": 0.0,
+      "delta_pr_auc": null,
+      "delta_latency_ms": 0.0
+    },
+    {
+      "dataset": "Balanced_Benchmark",
+      "model": "RuleBaseline",
+      "config_id": "full_30_features",
+      "config_name": "Full Baseline",
+      "removed_group": null,
+      "removed_group_name": "None (Reference Baseline)",
+      "feature_count": 30,
+      "fit_time_ms": 0.0,
+      "inference_latency_ms": 0.065,
+      "threshold": 0.5,
+      "sample_count": 8,
+      "support": {
+        "class_0_benign": 4,
+        "class_1_anomaly": 4
+      },
+      "accuracy": 0.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1_score": 0.0,
+      "pr_auc": 0.41666666666666663,
+      "roc_auc": 0.0,
+      "false_positive_rate": 1.0,
+      "confusion_matrix": [
+        [
+          0,
+          4
+        ],
+        [
+          4,
+          0
+        ]
+      ],
+      "single_class_warning": null,
+      "delta_precision": 0.0,
+      "delta_recall": 0.0,
+      "delta_f1": 0.0,
+      "delta_pr_auc": 0.0,
+      "delta_latency_ms": 0.0
+    },
+    {
+      "dataset": "Balanced_Benchmark",
+      "model": "LogisticRegression",
+      "config_id": "full_30_features",
+      "config_name": "Full Baseline",
+      "removed_group": null,
+      "removed_group_name": "None (Reference Baseline)",
+      "feature_count": 30,
+      "fit_time_ms": 7.531,
+      "inference_latency_ms": 0.097,
+      "threshold": 0.1,
+      "sample_count": 8,
+      "support": {
+        "class_0_benign": 4,
+        "class_1_anomaly": 4
+      },
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0,
+      "pr_auc": 1.0,
+      "roc_auc": 1.0,
+      "false_positive_rate": 0.0,
+      "confusion_matrix": [
+        [
+          4,
+          0
+        ],
+        [
+          0,
+          4
+        ]
+      ],
+      "single_class_warning": null,
+      "delta_precision": 0.0,
+      "delta_recall": 0.0,
+      "delta_f1": 0.0,
+      "delta_pr_auc": 0.0,
+      "delta_latency_ms": 0.0
+    },
+    {
+      "dataset": "Balanced_Benchmark",
+      "model": "XGBoost",
+      "config_id": "full_30_features",
+      "config_name": "Full Baseline",
+      "removed_group": null,
+      "removed_group_name": "None (Reference Baseline)",
+      "feature_count": 30,
+      "fit_time_ms": 116.864,
+      "inference_latency_ms": 0.122,
+      "threshold": 0.15,
+      "sample_count": 8,
+      "support": {
+        "class_0_benign": 4,
+        "class_1_anomaly": 4
+      },
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0,
+      "pr_auc": 1.0,
+      "roc_auc": 1.0,
+      "false_positive_rate": 0.0,
+      "confusion_matrix": [
+        [
+          4,
+          0
+        ],
+        [
+          0,
+          4
+        ]
+      ],
+      "single_class_warning": null,
+      "delta_precision": 0.0,
+      "delta_recall": 0.0,
+      "delta_f1": 0.0,
+      "delta_pr_auc": 0.0,
+      "delta_latency_ms": 0.0
+    },
+    {
+      "dataset": "Balanced_Benchmark",
+      "model": "RuleBaseline",
+      "config_id": "minus_G1_transaction_value",
+      "config_name": "Minus G1 (Transaction Value & Core)",
+      "removed_group": "G1",
+      "removed_group_name": "Transaction Value & Core",
+      "feature_count": 26,
+      "fit_time_ms": 0.0,
+      "inference_latency_ms": 0.055,
+      "threshold": 0.5,
+      "sample_count": 8,
+      "support": {
+        "class_0_benign": 4,
+        "class_1_anomaly": 4
+      },
+      "accuracy": 0.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1_score": 0.0,
+      "pr_auc": 0.41666666666666663,
+      "roc_auc": 0.0,
+      "false_positive_rate": 1.0,
+      "confusion_matrix": [
+        [
+          0,
+          4
+        ],
+        [
+          4,
+          0
+        ]
+      ],
+      "single_class_warning": null,
+      "delta_precision": 0.0,
+      "delta_recall": 0.0,
+      "delta_f1": 0.0,
+      "delta_pr_auc": 0.0,
+      "delta_latency_ms": -0.01
+    },
+    {
+      "dataset": "Balanced_Benchmark",
+      "model": "LogisticRegression",
+      "config_id": "minus_G1_transaction_value",
+      "config_name": "Minus G1 (Transaction Value & Core)",
+      "removed_group": "G1",
+      "removed_group_name": "Transaction Value & Core",
+      "feature_count": 26,
+      "fit_time_ms": 6.396,
+      "inference_latency_ms": 0.093,
+      "threshold": 0.1,
+      "sample_count": 8,
+      "support": {
+        "class_0_benign": 4,
+        "class_1_anomaly": 4
+      },
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0,
+      "pr_auc": 1.0,
+      "roc_auc": 1.0,
+      "false_positive_rate": 0.0,
+      "confusion_matrix": [
+        [
+          4,
+          0
+        ],
+        [
+          0,
+          4
+        ]
+      ],
+      "single_class_warning": null,
+      "delta_precision": 0.0,
+      "delta_recall": 0.0,
+      "delta_f1": 0.0,
+      "delta_pr_auc": 0.0,
+      "delta_latency_ms": -0.004
+    },
+    {
+      "dataset": "Balanced_Benchmark",
+      "model": "XGBoost",
+      "config_id": "minus_G1_transaction_value",
+      "config_name": "Minus G1 (Transaction Value & Core)",
+      "removed_group": "G1",
+      "removed_group_name": "Transaction Value & Core",
+      "feature_count": 26,
+      "fit_time_ms": 108.039,
+      "inference_latency_ms": 0.107,
+      "threshold": 0.15,
+      "sample_count": 8,
+      "support": {
+        "class_0_benign": 4,
+        "class_1_anomaly": 4
+      },
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0,
+      "pr_auc": 1.0,
+      "roc_auc": 1.0,
+      "false_positive_rate": 0.0,
+      "confusion_matrix": [
+        [
+          4,
+          0
+        ],
+        [
+          0,
+          4
+        ]
+      ],
+      "single_class_warning": null,
+      "delta_precision": 0.0,
+      "delta_recall": 0.0,
+      "delta_f1": 0.0,
+      "delta_pr_auc": 0.0,
+      "delta_latency_ms": -0.015
+    },
+    {
+      "dataset": "Balanced_Benchmark",
+      "model": "RuleBaseline",
+      "config_id": "minus_G2_gas_fees",
+      "config_name": "Minus G2 (Gas & Fee Mechanics)",
+      "removed_group": "G2",
+      "removed_group_name": "Gas & Fee Mechanics",
+      "feature_count": 24,
+      "fit_time_ms": 0.0,
+      "inference_latency_ms": 0.053,
+      "threshold": 0.5,
+      "sample_count": 8,
+      "support": {
+        "class_0_benign": 4,
+        "class_1_anomaly": 4
+      },
+      "accuracy": 0.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1_score": 0.0,
+      "pr_auc": 0.41666666666666663,
+      "roc_auc": 0.0,
+      "false_positive_rate": 1.0,
+      "confusion_matrix": [
+        [
+          0,
+          4
+        ],
+        [
+          4,
+          0
+        ]
+      ],
+      "single_class_warning": null,
+      "delta_precision": 0.0,
+      "delta_recall": 0.0,
+      "delta_f1": 0.0,
+      "delta_pr_auc": 0.0,
+      "delta_latency_ms": -0.012
+    },
+    {
+      "dataset": "Balanced_Benchmark",
+      "model": "LogisticRegression",
+      "config_id": "minus_G2_gas_fees",
+      "config_name": "Minus G2 (Gas & Fee Mechanics)",
+      "removed_group": "G2",
+      "removed_group_name": "Gas & Fee Mechanics",
+      "feature_count": 24,
+      "fit_time_ms": 6.954,
+      "inference_latency_ms": 0.098,
+      "threshold": 0.1,
+      "sample_count": 8,
+      "support": {
+        "class_0_benign": 4,
+        "class_1_anomaly": 4
+      },
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0,
+      "pr_auc": 1.0,
+      "roc_auc": 1.0,
+      "false_positive_rate": 0.0,
+      "confusion_matrix": [
+        [
+          4,
+          0
+        ],
+        [
+          0,
+          4
+        ]
+      ],
+      "single_class_warning": null,
+      "delta_precision": 0.0,
+      "delta_recall": 0.0,
+      "delta_f1": 0.0,
+      "delta_pr_auc": 0.0,
+      "delta_latency_ms": 0.001
+    },
+    {
+      "dataset": "Balanced_Benchmark",
+      "model": "XGBoost",
+      "config_id": "minus_G2_gas_fees",
+      "config_name": "Minus G2 (Gas & Fee Mechanics)",
+      "removed_group": "G2",
+      "removed_group_name": "Gas & Fee Mechanics",
+      "feature_count": 24,
+      "fit_time_ms": 129.277,
+      "inference_latency_ms": 0.161,
+      "threshold": 0.15,
+      "sample_count": 8,
+      "support": {
+        "class_0_benign": 4,
+        "class_1_anomaly": 4
+      },
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0,
+      "pr_auc": 1.0,
+      "roc_auc": 1.0,
+      "false_positive_rate": 0.0,
+      "confusion_matrix": [
+        [
+          4,
+          0
+        ],
+        [
+          0,
+          4
+        ]
+      ],
+      "single_class_warning": null,
+      "delta_precision": 0.0,
+      "delta_recall": 0.0,
+      "delta_f1": 0.0,
+      "delta_pr_auc": 0.0,
+      "delta_latency_ms": 0.039
+    },
+    {
+      "dataset": "Balanced_Benchmark",
+      "model": "RuleBaseline",
+      "config_id": "minus_G3_calldata_interaction",
+      "config_name": "Minus G3 (Calldata & Interaction)",
+      "removed_group": "G3",
+      "removed_group_name": "Calldata & Interaction",
+      "feature_count": 26,
+      "fit_time_ms": 0.0,
+      "inference_latency_ms": 0.055,
+      "threshold": 0.5,
+      "sample_count": 8,
+      "support": {
+        "class_0_benign": 4,
+        "class_1_anomaly": 4
+      },
+      "accuracy": 0.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1_score": 0.0,
+      "pr_auc": 0.41666666666666663,
+      "roc_auc": 0.0,
+      "false_positive_rate": 1.0,
+      "confusion_matrix": [
+        [
+          0,
+          4
+        ],
+        [
+          4,
+          0
+        ]
+      ],
+      "single_class_warning": null,
+      "delta_precision": 0.0,
+      "delta_recall": 0.0,
+      "delta_f1": 0.0,
+      "delta_pr_auc": 0.0,
+      "delta_latency_ms": -0.01
+    },
+    {
+      "dataset": "Balanced_Benchmark",
+      "model": "LogisticRegression",
+      "config_id": "minus_G3_calldata_interaction",
+      "config_name": "Minus G3 (Calldata & Interaction)",
+      "removed_group": "G3",
+      "removed_group_name": "Calldata & Interaction",
+      "feature_count": 26,
+      "fit_time_ms": 6.297,
+      "inference_latency_ms": 0.094,
+      "threshold": 0.1,
+      "sample_count": 8,
+      "support": {
+        "class_0_benign": 4,
+        "class_1_anomaly": 4
+      },
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0,
+      "pr_auc": 1.0,
+      "roc_auc": 1.0,
+      "false_positive_rate": 0.0,
+      "confusion_matrix": [
+        [
+          4,
+          0
+        ],
+        [
+          0,
+          4
+        ]
+      ],
+      "single_class_warning": null,
+      "delta_precision": 0.0,
+      "delta_recall": 0.0,
+      "delta_f1": 0.0,
+      "delta_pr_auc": 0.0,
+      "delta_latency_ms": -0.003
+    },
+    {
+      "dataset": "Balanced_Benchmark",
+      "model": "XGBoost",
+      "config_id": "minus_G3_calldata_interaction",
+      "config_name": "Minus G3 (Calldata & Interaction)",
+      "removed_group": "G3",
+      "removed_group_name": "Calldata & Interaction",
+      "feature_count": 26,
+      "fit_time_ms": 118.91,
+      "inference_latency_ms": 0.107,
+      "threshold": 0.15,
+      "sample_count": 8,
+      "support": {
+        "class_0_benign": 4,
+        "class_1_anomaly": 4
+      },
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0,
+      "pr_auc": 1.0,
+      "roc_auc": 1.0,
+      "false_positive_rate": 0.0,
+      "confusion_matrix": [
+        [
+          4,
+          0
+        ],
+        [
+          0,
+          4
+        ]
+      ],
+      "single_class_warning": null,
+      "delta_precision": 0.0,
+      "delta_recall": 0.0,
+      "delta_f1": 0.0,
+      "delta_pr_auc": 0.0,
+      "delta_latency_ms": -0.015
+    },
+    {
+      "dataset": "Balanced_Benchmark",
+      "model": "RuleBaseline",
+      "config_id": "minus_G4_account_history",
+      "config_name": "Minus G4 (Account History Profile)",
+      "removed_group": "G4",
+      "removed_group_name": "Account History Profile",
+      "feature_count": 24,
+      "fit_time_ms": 0.0,
+      "inference_latency_ms": 0.051,
+      "threshold": 0.5,
+      "sample_count": 8,
+      "support": {
+        "class_0_benign": 4,
+        "class_1_anomaly": 4
+      },
+      "accuracy": 0.5,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1_score": 0.0,
+      "pr_auc": 0.41666666666666663,
+      "roc_auc": 0.0,
+      "false_positive_rate": 0.0,
+      "confusion_matrix": [
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          0
+        ]
+      ],
+      "single_class_warning": null,
+      "delta_precision": 0.0,
+      "delta_recall": 0.0,
+      "delta_f1": 0.0,
+      "delta_pr_auc": 0.0,
+      "delta_latency_ms": -0.014
+    },
+    {
+      "dataset": "Balanced_Benchmark",
+      "model": "LogisticRegression",
+      "config_id": "minus_G4_account_history",
+      "config_name": "Minus G4 (Account History Profile)",
+      "removed_group": "G4",
+      "removed_group_name": "Account History Profile",
+      "feature_count": 24,
+      "fit_time_ms": 6.398,
+      "inference_latency_ms": 0.091,
+      "threshold": 0.1,
+      "sample_count": 8,
+      "support": {
+        "class_0_benign": 4,
+        "class_1_anomaly": 4
+      },
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0,
+      "pr_auc": 1.0,
+      "roc_auc": 1.0,
+      "false_positive_rate": 0.0,
+      "confusion_matrix": [
+        [
+          4,
+          0
+        ],
+        [
+          0,
+          4
+        ]
+      ],
+      "single_class_warning": null,
+      "delta_precision": 0.0,
+      "delta_recall": 0.0,
+      "delta_f1": 0.0,
+      "delta_pr_auc": 0.0,
+      "delta_latency_ms": -0.006
+    },
+    {
+      "dataset": "Balanced_Benchmark",
+      "model": "XGBoost",
+      "config_id": "minus_G4_account_history",
+      "config_name": "Minus G4 (Account History Profile)",
+      "removed_group": "G4",
+      "removed_group_name": "Account History Profile",
+      "feature_count": 24,
+      "fit_time_ms": 105.706,
+      "inference_latency_ms": 0.112,
+      "threshold": 0.15,
+      "sample_count": 8,
+      "support": {
+        "class_0_benign": 4,
+        "class_1_anomaly": 4
+      },
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0,
+      "pr_auc": 1.0,
+      "roc_auc": 1.0,
+      "false_positive_rate": 0.0,
+      "confusion_matrix": [
+        [
+          4,
+          0
+        ],
+        [
+          0,
+          4
+        ]
+      ],
+      "single_class_warning": null,
+      "delta_precision": 0.0,
+      "delta_recall": 0.0,
+      "delta_f1": 0.0,
+      "delta_pr_auc": 0.0,
+      "delta_latency_ms": -0.01
+    },
+    {
+      "dataset": "Balanced_Benchmark",
+      "model": "RuleBaseline",
+      "config_id": "minus_G5_temporal_burst",
+      "config_name": "Minus G5 (Temporal Burst & Flow)",
+      "removed_group": "G5",
+      "removed_group_name": "Temporal Burst & Flow",
+      "feature_count": 24,
+      "fit_time_ms": 0.0,
+      "inference_latency_ms": 0.053,
+      "threshold": 0.5,
+      "sample_count": 8,
+      "support": {
+        "class_0_benign": 4,
+        "class_1_anomaly": 4
+      },
+      "accuracy": 0.5,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1_score": 0.0,
+      "pr_auc": 0.5,
+      "roc_auc": 0.0,
+      "false_positive_rate": 0.0,
+      "confusion_matrix": [
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          0
+        ]
+      ],
+      "single_class_warning": null,
+      "delta_precision": 0.0,
+      "delta_recall": 0.0,
+      "delta_f1": 0.0,
+      "delta_pr_auc": 0.0833,
+      "delta_latency_ms": -0.012
+    },
+    {
+      "dataset": "Balanced_Benchmark",
+      "model": "LogisticRegression",
+      "config_id": "minus_G5_temporal_burst",
+      "config_name": "Minus G5 (Temporal Burst & Flow)",
+      "removed_group": "G5",
+      "removed_group_name": "Temporal Burst & Flow",
+      "feature_count": 24,
+      "fit_time_ms": 6.954,
+      "inference_latency_ms": 0.095,
+      "threshold": 0.1,
+      "sample_count": 8,
+      "support": {
+        "class_0_benign": 4,
+        "class_1_anomaly": 4
+      },
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0,
+      "pr_auc": 1.0,
+      "roc_auc": 1.0,
+      "false_positive_rate": 0.0,
+      "confusion_matrix": [
+        [
+          4,
+          0
+        ],
+        [
+          0,
+          4
+        ]
+      ],
+      "single_class_warning": null,
+      "delta_precision": 0.0,
+      "delta_recall": 0.0,
+      "delta_f1": 0.0,
+      "delta_pr_auc": 0.0,
+      "delta_latency_ms": -0.002
+    },
+    {
+      "dataset": "Balanced_Benchmark",
+      "model": "XGBoost",
+      "config_id": "minus_G5_temporal_burst",
+      "config_name": "Minus G5 (Temporal Burst & Flow)",
+      "removed_group": "G5",
+      "removed_group_name": "Temporal Burst & Flow",
+      "feature_count": 24,
+      "fit_time_ms": 101.294,
+      "inference_latency_ms": 0.107,
+      "threshold": 0.15,
+      "sample_count": 8,
+      "support": {
+        "class_0_benign": 4,
+        "class_1_anomaly": 4
+      },
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0,
+      "pr_auc": 1.0,
+      "roc_auc": 1.0,
+      "false_positive_rate": 0.0,
+      "confusion_matrix": [
+        [
+          4,
+          0
+        ],
+        [
+          0,
+          4
+        ]
+      ],
+      "single_class_warning": null,
+      "delta_precision": 0.0,
+      "delta_recall": 0.0,
+      "delta_f1": 0.0,
+      "delta_pr_auc": 0.0,
+      "delta_latency_ms": -0.015
+    },
+    {
+      "dataset": "Balanced_Benchmark",
+      "model": "RuleBaseline",
+      "config_id": "minus_G6_graph_topology",
+      "config_name": "Minus G6 (Graph Topology & Centrality)",
+      "removed_group": "G6",
+      "removed_group_name": "Graph Topology & Centrality",
+      "feature_count": 26,
+      "fit_time_ms": 0.0,
+      "inference_latency_ms": 0.059,
+      "threshold": 0.5,
+      "sample_count": 8,
+      "support": {
+        "class_0_benign": 4,
+        "class_1_anomaly": 4
+      },
+      "accuracy": 0.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1_score": 0.0,
+      "pr_auc": 0.41666666666666663,
+      "roc_auc": 0.0,
+      "false_positive_rate": 1.0,
+      "confusion_matrix": [
+        [
+          0,
+          4
+        ],
+        [
+          4,
+          0
+        ]
+      ],
+      "single_class_warning": null,
+      "delta_precision": 0.0,
+      "delta_recall": 0.0,
+      "delta_f1": 0.0,
+      "delta_pr_auc": 0.0,
+      "delta_latency_ms": -0.006
+    },
+    {
+      "dataset": "Balanced_Benchmark",
+      "model": "LogisticRegression",
+      "config_id": "minus_G6_graph_topology",
+      "config_name": "Minus G6 (Graph Topology & Centrality)",
+      "removed_group": "G6",
+      "removed_group_name": "Graph Topology & Centrality",
+      "feature_count": 26,
+      "fit_time_ms": 7.119,
+      "inference_latency_ms": 0.094,
+      "threshold": 0.1,
+      "sample_count": 8,
+      "support": {
+        "class_0_benign": 4,
+        "class_1_anomaly": 4
+      },
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0,
+      "pr_auc": 1.0,
+      "roc_auc": 1.0,
+      "false_positive_rate": 0.0,
+      "confusion_matrix": [
+        [
+          4,
+          0
+        ],
+        [
+          0,
+          4
+        ]
+      ],
+      "single_class_warning": null,
+      "delta_precision": 0.0,
+      "delta_recall": 0.0,
+      "delta_f1": 0.0,
+      "delta_pr_auc": 0.0,
+      "delta_latency_ms": -0.003
+    },
+    {
+      "dataset": "Balanced_Benchmark",
+      "model": "XGBoost",
+      "config_id": "minus_G6_graph_topology",
+      "config_name": "Minus G6 (Graph Topology & Centrality)",
+      "removed_group": "G6",
+      "removed_group_name": "Graph Topology & Centrality",
+      "feature_count": 26,
+      "fit_time_ms": 105.984,
+      "inference_latency_ms": 0.126,
+      "threshold": 0.15,
+      "sample_count": 8,
+      "support": {
+        "class_0_benign": 4,
+        "class_1_anomaly": 4
+      },
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0,
+      "pr_auc": 1.0,
+      "roc_auc": 1.0,
+      "false_positive_rate": 0.0,
+      "confusion_matrix": [
+        [
+          4,
+          0
+        ],
+        [
+          0,
+          4
+        ]
+      ],
+      "single_class_warning": null,
+      "delta_precision": 0.0,
+      "delta_recall": 0.0,
+      "delta_f1": 0.0,
+      "delta_pr_auc": 0.0,
+      "delta_latency_ms": 0.004
+    }
+  ]
+}

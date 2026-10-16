@@ -1,0 +1,15 @@
+category,name,samples,min_ms,median_ms,mean_ms,p95_ms,max_ms
+Component,M4_feature_extraction,25,2.1591,2.7835,2.7888,3.5093,3.6093
+Component,M6_rule_baseline,25,0.0851,0.0908,0.1042,0.1453,0.3471
+Component,M6_logistic_regression,25,0.6187,0.6851,0.9959,0.9262,8.1309
+Component,M6_xgboost,25,0.8345,0.9583,1.3519,1.2292,10.3155
+Component,M7_decision_policy,25,0.0022,0.0022,0.0032,0.0051,0.0222
+Component,database_audit_persistence,25,3.0987,3.8823,4.7859,9.3779,11.9536
+Component,M9_dataloader_retrieval,25,1.6406,1.8995,2.032,2.6948,3.0267
+Model_Inference,rule_baseline,50,0.0558,0.0616,0.0707,0.1479,0.166
+Model_Inference,logistic_regression,50,0.6097,0.6674,0.7164,0.93,1.1263
+Model_Inference,xgboost,50,0.8064,0.9417,1.2307,1.2206,14.3536
+HTTP_API,/health,25,5.8605,15.2974,15.5346,32.0913,32.4636
+HTTP_API,/predict,25,8.9569,9.9358,10.7398,12.0744,30.2413
+HTTP_API,/decision,25,7.49,8.3612,8.4822,9.2686,12.9283
+HTTP_API,/audit/{tx_hash},25,2.8836,5.7611,5.1584,7.188,10.4644

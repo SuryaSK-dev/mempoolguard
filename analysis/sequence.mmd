@@ -1,0 +1,43 @@
+sequenceDiagram
+    autonumber
+    actor Client as User / Dashboard / HTTP Client
+    participant API as FastAPI REST Service (api/app.py)
+    participant DecEngine as DecisionEngine (decision/engine.py)
+    participant FEngine as FeatureEngine (features/engine.py)
+    participant Models as ModelRegistry (XGBoost)
+    participant Policy as PolicyEngine (decision/policy.py)
+    participant DB as SQLite DB (core/database.py)
+    participant Audit as AuditLogger (decision/audit.py)
+
+    Note over Client,API: Main Flow 1: POST /decision with raw Transaction Payload
+    Client->>API: POST /decision {transaction: {...}}
+    API->>DB: insert_decoded_transaction(tx)
+    API->>FEngine: extract_features(tx)
+    Note over FEngine: Compute 30 features (Tx, Gas, History, Graph)<br/>Time-bounded by tx.first_seen_at
+    FEngine->>DB: insert_feature_vector(fv)
+    API->>Models: get_model("xgboost")
+    Models-->>API: model_instance, metadata
+    API->>Models: predict_risk_scores(feature_matrix)
+    Models-->>API: risk_score (e.g. 78.5 / 100.0)
+    API->>DecEngine: decide_score(tx_hash, risk_score, features, model_info)
+    
+    rect rgb(240, 245, 255)
+        Note over DecEngine,Policy: Policy Evaluation & Audit Persistence
+        DecEngine->>Policy: evaluate_score(78.5)
+        Policy-->>DecEngine: DecisionType.HOLD
+        DecEngine->>Policy: derive_reason_codes(risk_score, HOLD, features)
+        Policy-->>DecEngine: ["HIGH_TRANSFER_VALUE", "GAS_FEE_SPIKE"]
+        DecEngine->>DB: insert_decision(decision)
+        DecEngine->>Audit: log_decision_event(...)
+        Audit->>DB: insert_audit_record(audit_rec)
+    end
+
+    DecEngine-->>API: (Decision, AuditRecord)
+    API-->>Client: 200 OK {decision: "HOLD", risk_score: 78.5, reason_codes: [...]}
+
+    Note over Client,API: Main Flow 2: GET /audit/{tx_hash}
+    Client->>API: GET /audit/0x123...
+    API->>DB: get_decisions_by_tx(clean_tx)
+    API->>DB: get_audit_records_by_tx(clean_tx)
+    DB-->>API: [Decision], [AuditRecord]
+    API-->>Client: 200 OK {decisions: [...], audit_records: [...]}

@@ -1,0 +1,39 @@
+{
+  "model_name": "RuleBasedBaseline",
+  "model_version": "1.0.0",
+  "threshold": 50.0,
+  "rules": {
+    "RULE_GAS_SPIKE": {
+      "description": "Gas price significantly exceeds local window average or absolute threshold (>20 Gwei)",
+      "weight": 40.0,
+      "reason_code": "GAS_SPIKE_DETECTED"
+    },
+    "RULE_BURST_ACTIVITY": {
+      "description": "Rapid succession of transactions detected in 10-second sliding window (>=3 txs)",
+      "weight": 30.0,
+      "reason_code": "BURST_ACTIVITY_DETECTED"
+    },
+    "RULE_FAN_OUT": {
+      "description": "Rapid dispersion to multiple unique destination addresses within 60s (>=3 addresses)",
+      "weight": 25.0,
+      "reason_code": "FAN_OUT_DISPERSION_DETECTED"
+    },
+    "RULE_REPEATED_TRANSFER": {
+      "description": "Repeated high-frequency value transfers between identical accounts (>=3 transfers)",
+      "weight": 25.0,
+      "reason_code": "REPEATED_TRANSFER_DETECTED"
+    },
+    "RULE_CONTRACT_CALL": {
+      "description": "Transaction includes non-empty calldata invoking a smart contract",
+      "weight": 20.0,
+      "reason_code": "CONTRACT_CALL_INVOCATION"
+    },
+    "RULE_GAS_DEVIATION_LOW": {
+      "description": "Gas price below standard network baseline (<1.0 Gwei)",
+      "weight": 20.0,
+      "reason_code": "GAS_PRICE_ANOMALY_LOW"
+    }
+  },
+  "feature_version": "1.0.0",
+  "feature_count": 30
+}

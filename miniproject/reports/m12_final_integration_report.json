@@ -1,0 +1,401 @@
+{
+  "title": "MempoolGuard Milestone M12 Final Integration & Demonstration Report",
+  "timestamp": "2026-10-01T06:47:56.791402+00:00",
+  "environment": {
+    "timestamp": "2026-10-01T06:47:56.765555+00:00",
+    "os": "Windows-11-10.0.26200-SP0",
+    "cpu": "12th Gen Intel(R) Core(TM) i5-12450H",
+    "cores": 12,
+    "ram_total_gb": 15.73,
+    "ram_free_gb": 3.5,
+    "python": "3.14.6",
+    "fastapi": "0.141.1",
+    "uvicorn": "0.53.0",
+    "streamlit": "1.64.0",
+    "web3": "8.0.0",
+    "scikit_learn": "1.9.1",
+    "xgboost": "3.4.1",
+    "sqlite": "3.50.4 (WAL mode)",
+    "anvil_version": "anvil Version: 1.8.3\nCommit SHA: cae51ad458f6abb64852b7709eb784352429825d\nBuild Timestamp: 2026-09-15T10:30:41.249604900Z (1789468241)\nBuild Profile: dist",
+    "anvil_running": true
+  },
+  "pre_flight_health": {
+    "overall_status": "DEGRADED",
+    "python": {
+      "status": "HEALTHY",
+      "python_version": "3.14.6",
+      "platform": "win32",
+      "is_supported": true
+    },
+    "database": {
+      "status": "HEALTHY",
+      "database_path": "data/mempoolguard.db",
+      "table_counts": {
+        "raw_transactions": 135,
+        "decoded_transactions": 51,
+        "feature_vectors": 55,
+        "model_predictions": 78,
+        "decisions": 1059,
+        "audit_records": 1059
+      }
+    },
+    "blockchain_rpc": {
+      "status": "DEGRADED",
+      "rpc_url": "http://127.0.0.1:8545",
+      "connected": false,
+      "message": "Local node offline or unreachable: <urlopen error timed out>"
+    },
+    "storage": {
+      "status": "HEALTHY",
+      "directories": {
+        "data\\raw": "writable",
+        "data\\processed": "writable",
+        "artifacts\\models": "writable"
+      }
+    }
+  },
+  "post_demonstration_health": {
+    "overall_status": "HEALTHY",
+    "python": {
+      "status": "HEALTHY",
+      "python_version": "3.14.6",
+      "platform": "win32",
+      "is_supported": true
+    },
+    "database": {
+      "status": "HEALTHY",
+      "database_path": "data/mempoolguard.db",
+      "table_counts": {
+        "raw_transactions": 136,
+        "decoded_transactions": 52,
+        "feature_vectors": 56,
+        "model_predictions": 79,
+        "decisions": 1061,
+        "audit_records": 1061
+      }
+    },
+    "blockchain_rpc": {
+      "status": "HEALTHY",
+      "rpc_url": "http://127.0.0.1:8545",
+      "connected": true,
+      "client_version": "anvil/v1.8.3"
+    },
+    "storage": {
+      "status": "HEALTHY",
+      "directories": {
+        "data\\raw": "writable",
+        "data\\processed": "writable",
+        "artifacts\\models": "writable"
+      }
+    }
+  },
+  "artifact_preservation": {
+    "m5_dataset_parquet": true,
+    "m6_xgboost_model": true,
+    "m6_xgboost_metadata": true,
+    "m10_ablation_json": true,
+    "m10_ablation_csv": true,
+    "m10_ablation_summary_md": true,
+    "m11_validation_json": true,
+    "m11_validation_csv": true,
+    "m11_validation_summary_md": true
+  },
+  "demonstration_trace": {
+    "transaction_hash": "0xc9e3e96454ec99a67efe9e9b972232c8034d90bf5beea21f0058bffd4091b79c",
+    "chain_id": 31337,
+    "sender": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+    "receiver": "0x15d34aaf54267db7d7c367839aaf71a00a2c6a65",
+    "value_wei": "420000000000000000",
+    "value_eth": 0.42,
+    "nonce": 0,
+    "timestamps": {
+      "first_seen_at": "2026-10-01T06:47:54.206300+00:00",
+      "pending_detected_at": "2026-10-01T06:47:54.244870+00:00",
+      "transaction_decoded_at": "2026-10-01T06:47:54.252533+00:00",
+      "features_extracted_at": "2026-10-01T06:47:54.257580+00:00",
+      "prediction_created_at": "2026-10-01T06:47:54.263113+00:00",
+      "decision_created_at": "2026-10-01T06:47:54.269844+00:00",
+      "audit_persisted_at": "2026-10-01T06:47:54.266800+00:00",
+      "block_confirmed_at": "2026-10-01T06:47:54.363658+00:00"
+    },
+    "stage_durations_ms": {
+      "m3_detection_ms": 38.565,
+      "transaction_decoding_ms": 5.8631,
+      "m4_feature_extraction_ms": 5.0237,
+      "m6_inference_ms": 5.5166,
+      "m7_decision_and_audit_ms": 6.7059,
+      "on_chain_mining_ms": 6.8407,
+      "total_pre_confirmation_pipeline_ms": 63.5385,
+      "total_e2e_including_block_confirmation_ms": 70.4026
+    },
+    "feature_schema_version": "1.0.0",
+    "feature_count": 30,
+    "model_name": "xgboost",
+    "model_version": "1.0.0",
+    "risk_score": 88.9532,
+    "predicted_class": 1,
+    "inference_latency_ms": 5.5166,
+    "decision": "HOLD",
+    "configured_thresholds": {
+      "threshold_allow": 30.0,
+      "threshold_flag": 70.0
+    },
+    "reason_codes": [
+      "HIGH_RISK_SCORE",
+      "REPEATED_INTERACTION_DETECTED",
+      "CONTRACT_CALL_INVOCATION"
+    ],
+    "policy_version": "1.0.0",
+    "is_simulated": true,
+    "audit_id": "91ab69da-8bcd-4a01-9f8e-aeece4e40ff2",
+    "confirmation_block": 1,
+    "confirmation_status": "CONFIRMED",
+    "total_end_to_end_ms": 63.5385
+  },
+  "fastapi_verification": {
+    "health": {
+      "status_code": 200,
+      "latency_ms": 15.249,
+      "payload": {
+        "status": "HEALTHY",
+        "api": {
+          "title": "MempoolGuard API",
+          "version": "1.0.0",
+          "host": "127.0.0.1",
+          "port": 8000,
+          "status": "RUNNING"
+        },
+        "python": {
+          "status": "HEALTHY",
+          "python_version": "3.14.6",
+          "platform": "win32",
+          "is_supported": true
+        },
+        "database": {
+          "status": "HEALTHY",
+          "database_path": "data/mempoolguard.db",
+          "table_counts": {
+            "raw_transactions": 136,
+            "decoded_transactions": 52,
+            "feature_vectors": 56,
+            "model_predictions": 78,
+            "decisions": 1060,
+            "audit_records": 1060
+          }
+        },
+        "models": {
+          "primary_model": "xgboost",
+          "available_models": [
+            "xgboost",
+            "logistic_regression",
+            "rule_baseline"
+          ],
+          "loaded_count": 3,
+          "details": {
+            "xgboost": {
+              "version": "1.0.0",
+              "type": "XGBoostClassifier"
+            },
+            "logistic_regression": {
+              "version": "1.0.0",
+              "type": "LogisticRegression"
+            },
+            "rule_baseline": {
+              "version": "1.0.0",
+              "type": "RuleBasedBaseline"
+            }
+          }
+        },
+        "rpc": {
+          "status": "HEALTHY",
+          "rpc_url": "http://127.0.0.1:8545",
+          "connected": true,
+          "client_version": "anvil/v1.8.3"
+        }
+      }
+    },
+    "predict": {
+      "status_code": 200,
+      "latency_ms": 12.999,
+      "payload": {
+        "tx_hash": "0xc9e3e96454ec99a67efe9e9b972232c8034d90bf5beea21f0058bffd4091b79c",
+        "risk_score": 88.95318603515625,
+        "predicted_class": 1,
+        "model_name": "XGBoostClassifier",
+        "model_version": "1.0.0",
+        "inference_latency_ms": 5.143,
+        "reason_codes": [
+          "HIGH_RISK_SCORE"
+        ],
+        "feature_version": "1.0.0",
+        "explanation": "Evaluated by XGBoostClassifier v1.0.0 (score: 88.95)"
+      }
+    },
+    "decision": {
+      "status_code": 200,
+      "latency_ms": 19.387,
+      "payload": {
+        "tx_hash": "0xc9e3e96454ec99a67efe9e9b972232c8034d90bf5beea21f0058bffd4091b79c",
+        "decision": "HOLD",
+        "risk_score": 88.95318603515625,
+        "reason_codes": [
+          "HIGH_RISK_SCORE",
+          "REPEATED_INTERACTION_DETECTED",
+          "CONTRACT_CALL_INVOCATION"
+        ],
+        "policy_version": "1.0.0",
+        "model_name": "XGBoostClassifier",
+        "model_version": "1.0.0",
+        "created_at": "2026-10-01T06:47:54.324666Z",
+        "expires_at": "2026-10-01T06:48:24.324666Z",
+        "is_simulated": true,
+        "audit_id": "da51d5e3-802b-4aec-920c-464397e460ca"
+      }
+    },
+    "audit": {
+      "status_code": 200,
+      "latency_ms": 6.124,
+      "payload": {
+        "tx_hash": "0xc9e3e96454ec99a67efe9e9b972232c8034d90bf5beea21f0058bffd4091b79c",
+        "decisions": [
+          {
+            "tx_hash": "0xc9e3e96454ec99a67efe9e9b972232c8034d90bf5beea21f0058bffd4091b79c",
+            "decision": "HOLD",
+            "reason_codes": [
+              "HIGH_RISK_SCORE",
+              "REPEATED_INTERACTION_DETECTED",
+              "CONTRACT_CALL_INVOCATION"
+            ],
+            "policy_version": "1.0.0",
+            "created_at": "2026-10-01T06:47:54.263148+00:00",
+            "expires_at": "2026-10-01T06:48:24.263148+00:00",
+            "is_simulated": true
+          },
+          {
+            "tx_hash": "0xc9e3e96454ec99a67efe9e9b972232c8034d90bf5beea21f0058bffd4091b79c",
+            "decision": "HOLD",
+            "reason_codes": [
+              "HIGH_RISK_SCORE",
+              "REPEATED_INTERACTION_DETECTED",
+              "CONTRACT_CALL_INVOCATION"
+            ],
+            "policy_version": "1.0.0",
+            "created_at": "2026-10-01T06:47:54.324666+00:00",
+            "expires_at": "2026-10-01T06:48:24.324666+00:00",
+            "is_simulated": true
+          }
+        ],
+        "audit_records": [
+          {
+            "audit_id": "91ab69da-8bcd-4a01-9f8e-aeece4e40ff2",
+            "tx_hash": "0xc9e3e96454ec99a67efe9e9b972232c8034d90bf5beea21f0058bffd4091b79c",
+            "event_type": "DECISION_ISSUED",
+            "timestamp": "2026-10-01T06:47:54.266800Z",
+            "risk_score": 88.95318603515625,
+            "decision": "HOLD",
+            "details": {
+              "policy_version": "1.0.0",
+              "reason_codes": [
+                "HIGH_RISK_SCORE",
+                "REPEATED_INTERACTION_DETECTED",
+                "CONTRACT_CALL_INVOCATION"
+              ],
+              "is_simulated": true,
+              "model_name": "xgboost",
+              "model_version": "1.0.0",
+              "threshold_allow": 30.0,
+              "threshold_flag": 70.0,
+              "expires_at": "2026-10-01T06:48:24.263148+00:00"
+            },
+            "error_info": null
+          },
+          {
+            "audit_id": "da51d5e3-802b-4aec-920c-464397e460ca",
+            "tx_hash": "0xc9e3e96454ec99a67efe9e9b972232c8034d90bf5beea21f0058bffd4091b79c",
+            "event_type": "DECISION_ISSUED",
+            "timestamp": "2026-10-01T06:47:54.329512Z",
+            "risk_score": 88.95318603515625,
+            "decision": "HOLD",
+            "details": {
+              "policy_version": "1.0.0",
+              "reason_codes": [
+                "HIGH_RISK_SCORE",
+                "REPEATED_INTERACTION_DETECTED",
+                "CONTRACT_CALL_INVOCATION"
+              ],
+              "is_simulated": true,
+              "model_name": "XGBoostClassifier",
+              "model_version": "1.0.0",
+              "threshold_allow": 30.0,
+              "threshold_flag": 70.0,
+              "expires_at": "2026-10-01T06:48:24.324666+00:00"
+            },
+            "error_info": null
+          }
+        ]
+      }
+    }
+  },
+  "dashboard_verification": {
+    "streamlit_health_status": 200,
+    "streamlit_root_status": 200,
+    "streamlit_root_bytes": 7260,
+    "data_loader_available": true,
+    "tx_observed_in_dataloader": true,
+    "decision_observed_in_dataloader": true,
+    "audit_observed_in_dataloader": true,
+    "total_transactions_in_db": 52,
+    "total_decisions_in_db": 1061,
+    "total_audit_records_in_db": 1061
+  },
+  "component_verification_matrix": {
+    "M1_foundation": "PASS - Data contracts, config, logging, SQLite WAL schema, health checks verified.",
+    "M2_local_blockchain": "PASS - Local Anvil EVM, scenario generator (8 archetypes, 34 txs) verified.",
+    "M3_mempool_listener": "PASS - Real-time pending mempool observation, deduplication, raw ingestion verified.",
+    "M4_feature_engine": "PASS - 30 canonical pre-confirmation features, strict anti-leakage verified.",
+    "M5_dataset_creation": "PASS - Parquet & CSV export, chronological time-based split, leakage audit verified.",
+    "M6_models": "PASS - RuleBaseline, LogisticRegression, XGBoostClassifier, persistence & metadata verified.",
+    "M7_decision_engine": "PASS - Configured thresholds (30.0, 70.0), ALLOW/FLAG/HOLD, relational audit trail verified.",
+    "M8_fastapi_service": "PASS - Uvicorn REST API, /health, /predict, /decision, /audit endpoints, idempotency verified.",
+    "M9_streamlit_dashboard": "PASS - Streamlit UI, 8 analytical views, DataLoader & API client integration verified.",
+    "M10_ablation_study": "PASS - Controlled LOGO across 6 feature groups, 3 model families, empirical report verified.",
+    "M11_validation": "PASS - High-res empirical latencies (N=25, 50), 5 & 10 worker concurrency, safe fallback verified.",
+    "M12_final_integration": "PASS - Live end-to-end trace from mempool capture to block confirmation verified."
+  },
+  "historical_m11_benchmarks_summary": {
+    "note": "Historical M11 local benchmark measurements (N=25 / N=50 on Intel Core i5-12450H, Windows 11). Not production SLAs.",
+    "m4_feature_extraction_p95_ms": 3.5093,
+    "m6_xgboost_inference_p95_ms": 1.2292,
+    "m7_decision_policy_p95_ms": 0.0051,
+    "sqlite_audit_persistence_p95_ms": 9.3779,
+    "fastapi_predict_p95_ms": 12.0744,
+    "concurrency_5_workers_throughput_rps": 118.47,
+    "concurrency_10_workers_throughput_rps": 102.2
+  },
+  "research_limitations": [
+    "Synthetic/local proof-of-concept dataset: evaluated on 34 synthetic and benign scenario transactions.",
+    "Synthetic attack labels: anomalies represent injected behavioral heuristics (gas spikes, bursts, fan-outs, contract calls).",
+    "Label-generation dependencies: models learn synthetic patterns, not real-world adversarial MEV or mainnet attacks.",
+    "Limited dataset size: 34 samples in chronological split (23 train, 5 val, 6 test) restricts statistical generalization.",
+    "Local Anvil environment: single-node Foundry Anvil (Chain ID 31337) with instant local network latency.",
+    "Host hardware dependency: all benchmarks measured locally on 12th Gen Intel Core i5-12450H on Windows 11.",
+    "No production traffic: does not encounter public peer-to-peer mempool reorgs, latency jitter, or network partition.",
+    "No real-world fraud-detection validation: prototype demonstrated for academic/patent validation only.",
+    "Application-level simulated decisions: ALLOW / FLAG / HOLD do not modify blockchain consensus or physically censor blocks.",
+    "Benchmark measurements are environment-dependent proof-of-concept timings, not production throughput guarantees."
+  ],
+  "project_status": {
+    "M1": "VERIFIED",
+    "M2": "VERIFIED",
+    "M3": "VERIFIED",
+    "M4": "VERIFIED",
+    "M5": "VERIFIED",
+    "M6": "VERIFIED",
+    "M7": "VERIFIED",
+    "M8": "VERIFIED",
+    "M9": "VERIFIED",
+    "M10": "VERIFIED",
+    "M11": "VERIFIED",
+    "M12": "VERIFIED"
+  }
+}

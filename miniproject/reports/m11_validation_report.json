@@ -1,0 +1,344 @@
+{
+  "milestone": "M11",
+  "objective": "Latency and End-to-End Validation",
+  "timestamp": "2026-10-01T06:16:21Z",
+  "total_benchmark_runtime_seconds": 7.59,
+  "environment": {
+    "timestamp": "2026-10-01T06:16:17.035560+00:00",
+    "os": "Windows-11-10.0.26200-SP0",
+    "python": "3.14.6",
+    "python_build": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+    "fastapi": "0.141.1",
+    "uvicorn": "0.53.0",
+    "streamlit": "1.64.0",
+    "scikit_learn": "1.9.1",
+    "xgboost": "3.4.1",
+    "pandas": "3.0.6",
+    "numpy": "2.5.3",
+    "web3": "8.0.0",
+    "sqlite": "3.50.4",
+    "cpu_model": "12th Gen Intel(R) Core(TM) i5-12450H",
+    "logical_cores": 12,
+    "total_ram_gb": 15.73,
+    "free_ram_gb": 2.85,
+    "anvil_binary_found": true,
+    "anvil_version": "anvil Version: 1.8.3\nCommit SHA: cae51ad458f6abb64852b7709eb784352429825d\nBuild Timestamp: 2026-09-15T10:30:41.249604900Z (1789468241)\nBuild Profile: dist",
+    "anvil_online": false
+  },
+  "end_to_end_trace": {
+    "tx_hash": "0x751b47db283d32a8ba24470ba0036c24aa68479e46cf00f552a25c00a35396a7",
+    "sender": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
+    "receiver": "0x90f79bf6eb2c4f870365e785982e1f101e93b906",
+    "timestamps": {
+      "transaction_received": "2026-10-01T06:16:19.636860+00:00",
+      "mempool_detected": "2026-10-01T06:16:19.676539+00:00",
+      "transaction_decoded": "2026-10-01T06:16:19.685576+00:00",
+      "features_created": "2026-10-01T06:16:19.692039+00:00",
+      "prediction_created": "2026-10-01T06:16:19.699402+00:00",
+      "decision_created": "2026-10-01T06:16:19.707372+00:00",
+      "audit_persisted": "2026-10-01T06:16:19.704528+00:00",
+      "api_retrieved": "2026-10-01T06:16:19.713749+00:00"
+    },
+    "stage_durations_ms": {
+      "m3_detection_ms": 39.6675,
+      "transaction_decoding_ms": 6.6486,
+      "m4_feature_extraction_ms": 6.4571,
+      "m6_inference_ms": 7.3487,
+      "m7_decision_and_audit_ms": 7.9587,
+      "api_lookup_ms": 0.64,
+      "total_end_to_end_ms": 70.5043
+    },
+    "model_name": "xgboost",
+    "model_version": "1.0.0",
+    "feature_schema_version": "1.0.0",
+    "feature_count": 30,
+    "risk_score": 88.9532,
+    "decision": "HOLD",
+    "reason_codes": [
+      "HIGH_RISK_SCORE",
+      "REPEATED_TRANSFER_DETECTED",
+      "CONTRACT_CALL_INVOCATION"
+    ],
+    "audit_id": "ae428eb5-0d47-479f-a956-2d2c4a8a1f48",
+    "is_simulated": true,
+    "terminal_confirmed": true
+  },
+  "component_latencies": {
+    "M4_feature_extraction": {
+      "name": "M4_Feature_Extraction",
+      "sample_count": 25,
+      "min_ms": 2.1591,
+      "median_ms": 2.7835,
+      "mean_ms": 2.7888,
+      "p95_ms": 3.5093,
+      "max_ms": 3.6093,
+      "p95_note": null
+    },
+    "M6_rule_baseline": {
+      "name": "M6_RuleBaseline_Inference",
+      "sample_count": 25,
+      "min_ms": 0.0851,
+      "median_ms": 0.0908,
+      "mean_ms": 0.1042,
+      "p95_ms": 0.1453,
+      "max_ms": 0.3471,
+      "p95_note": null
+    },
+    "M6_logistic_regression": {
+      "name": "M6_LogisticRegression_Inference",
+      "sample_count": 25,
+      "min_ms": 0.6187,
+      "median_ms": 0.6851,
+      "mean_ms": 0.9959,
+      "p95_ms": 0.9262,
+      "max_ms": 8.1309,
+      "p95_note": null
+    },
+    "M6_xgboost": {
+      "name": "M6_XGBoost_Inference",
+      "sample_count": 25,
+      "min_ms": 0.8345,
+      "median_ms": 0.9583,
+      "mean_ms": 1.3519,
+      "p95_ms": 1.2292,
+      "max_ms": 10.3155,
+      "p95_note": null
+    },
+    "M7_decision_policy": {
+      "name": "M7_Decision_Evaluation",
+      "sample_count": 25,
+      "min_ms": 0.0022,
+      "median_ms": 0.0022,
+      "mean_ms": 0.0032,
+      "p95_ms": 0.0051,
+      "max_ms": 0.0222,
+      "p95_note": null
+    },
+    "database_audit_persistence": {
+      "name": "Database_Audit_Persistence",
+      "sample_count": 25,
+      "min_ms": 3.0987,
+      "median_ms": 3.8823,
+      "mean_ms": 4.7859,
+      "p95_ms": 9.3779,
+      "max_ms": 11.9536,
+      "p95_note": null
+    },
+    "M9_dataloader_retrieval": {
+      "name": "M9_DataLoader_Queries",
+      "sample_count": 25,
+      "min_ms": 1.6406,
+      "median_ms": 1.8995,
+      "mean_ms": 2.032,
+      "p95_ms": 2.6948,
+      "max_ms": 3.0267,
+      "p95_note": null
+    }
+  },
+  "model_latencies": {
+    "rule_baseline": {
+      "name": "rule_baseline",
+      "sample_count": 50,
+      "min_ms": 0.0558,
+      "median_ms": 0.0616,
+      "mean_ms": 0.0707,
+      "p95_ms": 0.1479,
+      "max_ms": 0.166,
+      "p95_note": null
+    },
+    "logistic_regression": {
+      "name": "logistic_regression",
+      "sample_count": 50,
+      "min_ms": 0.6097,
+      "median_ms": 0.6674,
+      "mean_ms": 0.7164,
+      "p95_ms": 0.93,
+      "max_ms": 1.1263,
+      "p95_note": null
+    },
+    "xgboost": {
+      "name": "xgboost",
+      "sample_count": 50,
+      "min_ms": 0.8064,
+      "median_ms": 0.9417,
+      "mean_ms": 1.2307,
+      "p95_ms": 1.2206,
+      "max_ms": 14.3536,
+      "p95_note": null
+    }
+  },
+  "api_latencies": {
+    "/health": {
+      "name": "API_Health",
+      "sample_count": 25,
+      "min_ms": 5.8605,
+      "median_ms": 15.2974,
+      "mean_ms": 15.5346,
+      "p95_ms": 32.0913,
+      "max_ms": 32.4636,
+      "p95_note": null,
+      "successful_requests": 25,
+      "failed_requests": 0,
+      "status_distribution": {
+        "200": 25
+      }
+    },
+    "/predict": {
+      "name": "API_Predict",
+      "sample_count": 25,
+      "min_ms": 8.9569,
+      "median_ms": 9.9358,
+      "mean_ms": 10.7398,
+      "p95_ms": 12.0744,
+      "max_ms": 30.2413,
+      "p95_note": null,
+      "successful_requests": 25,
+      "failed_requests": 0,
+      "status_distribution": {
+        "200": 25
+      }
+    },
+    "/decision": {
+      "name": "API_Decision",
+      "sample_count": 25,
+      "min_ms": 7.49,
+      "median_ms": 8.3612,
+      "mean_ms": 8.4822,
+      "p95_ms": 9.2686,
+      "max_ms": 12.9283,
+      "p95_note": null,
+      "successful_requests": 25,
+      "failed_requests": 0,
+      "status_distribution": {
+        "200": 25
+      }
+    },
+    "/audit/{tx_hash}": {
+      "name": "API_Audit_Lookup",
+      "sample_count": 25,
+      "min_ms": 2.8836,
+      "median_ms": 5.7611,
+      "mean_ms": 5.1584,
+      "p95_ms": 7.188,
+      "max_ms": 10.4644,
+      "p95_note": null,
+      "successful_requests": 25,
+      "failed_requests": 0,
+      "status_distribution": {
+        "200": 25
+      }
+    }
+  },
+  "end_to_end_api_latency": {
+    "name": "API_E2E_Decision",
+    "sample_count": 25,
+    "min_ms": 7.49,
+    "median_ms": 8.3612,
+    "mean_ms": 8.4822,
+    "p95_ms": 9.2686,
+    "max_ms": 12.9283,
+    "p95_note": null
+  },
+  "concurrency_benchmarks": {
+    "concurrency_5_workers": {
+      "workers": 5,
+      "total_requests": 20,
+      "successful_requests": 20,
+      "failed_requests": 0,
+      "wall_time_seconds": 0.1688,
+      "throughput_rps": 118.47,
+      "min_ms": 20.5345,
+      "median_ms": 28.1219,
+      "mean_ms": 28.9023,
+      "p95_ms": 36.2252,
+      "max_ms": 39.9937
+    },
+    "concurrency_10_workers": {
+      "workers": 10,
+      "total_requests": 20,
+      "successful_requests": 20,
+      "failed_requests": 0,
+      "wall_time_seconds": 0.1957,
+      "throughput_rps": 102.2,
+      "min_ms": 28.8369,
+      "median_ms": 67.9213,
+      "mean_ms": 71.5176,
+      "p95_ms": 119.6174,
+      "max_ms": 120.745
+    }
+  },
+  "idempotency_validation": {
+    "test_tx_hash": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef61b56f3",
+    "counts_before": {
+      "raw_transactions": 128,
+      "decoded_transactions": 47,
+      "feature_vectors": 51,
+      "model_predictions": 76,
+      "decisions": 1038,
+      "audit_records": 1038
+    },
+    "counts_after_request_1": {
+      "raw_transactions": 129,
+      "decoded_transactions": 47,
+      "feature_vectors": 51,
+      "model_predictions": 76,
+      "decisions": 1039,
+      "audit_records": 1039
+    },
+    "counts_after_request_2": {
+      "raw_transactions": 129,
+      "decoded_transactions": 47,
+      "feature_vectors": 51,
+      "model_predictions": 76,
+      "decisions": 1039,
+      "audit_records": 1039
+    },
+    "decisions_added_req1": 1,
+    "decisions_added_req2": 0,
+    "audit_records_added_req1": 1,
+    "audit_records_added_req2": 0,
+    "duplicate_prevented": true,
+    "idempotency_verified": true
+  },
+  "error_and_fallback_validation": {
+    "model_failure_fallback": {
+      "tx_hash": "0xcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "decision": "FLAG",
+      "is_fallback": true,
+      "reason_codes": [
+        "MODEL_FAILURE",
+        "FALLBACK_POLICY",
+        "MEDIUM_RISK_SCORE"
+      ],
+      "has_fallback_reason": true,
+      "audit_event_type": "PIPELINE_ERROR",
+      "is_pipeline_error_event": true
+    },
+    "http_422_validation": {
+      "status_code": 422,
+      "passed": true,
+      "sanitized": true
+    },
+    "http_unknown_model": {
+      "status_code": 404,
+      "passed": true,
+      "sanitized": true
+    },
+    "http_404_audit_lookup": {
+      "status_code": 404,
+      "passed": true,
+      "sanitized": true
+    }
+  },
+  "data_integrity": {
+    "m5_dataset_intact": true,
+    "m5_dataset_size_bytes": 33403,
+    "m6_production_models_intact": true,
+    "m10_reports_preserved": true
+  },
+  "limitations_and_disclaimer": {
+    "context": "Local proof-of-concept benchmark executed on Windows 11 host with local Anvil node and SQLite WAL.",
+    "disclaimer": "Simulated pre-confirmation risk scoring. Measurements do not represent public distributed mainnet consensus or production scale.",
+    "dataset_note": "Synthetic traffic scenarios (M2) and pre-confirmation feature representations (M4)."
+  }
+}

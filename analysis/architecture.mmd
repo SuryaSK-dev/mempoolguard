@@ -1,0 +1,82 @@
+graph TD
+    subgraph EVM["EVM Blockchain Layer (Local Anvil)"]
+        Node["Anvil Development Node<br/>(Port: 8545, Chain ID: 31337)"]
+        Mempool["Pending Transaction Mempool"]
+        Node --> Mempool
+    end
+
+    subgraph Collection["Ingestion & Traffic Generation"]
+        Gen["Transaction Generator<br/>(collector/transaction_generator.py)<br/>8 Synthetic Scenarios (34 txs)"]
+        Listener["Mempool Listener<br/>(collector/mempool_listener.py)<br/>JSON-RPC Polling & Dedup"]
+        Gen -->|"eth_sendTransaction"| Node
+        Mempool -->|"eth_newPendingTransactionFilter<br/>or txpool_content fallback"| Listener
+    end
+
+    subgraph Storage["ACID SQLite Database (WAL Mode)"]
+        DB[("SQLite Database<br/>(core/database.py)")]
+        T_Raw["raw_transactions"]
+        T_Decoded["decoded_transactions"]
+        T_Features["feature_vectors"]
+        T_Predictions["model_predictions"]
+        T_Decisions["decisions"]
+        T_Audit["audit_records"]
+        
+        DB --- T_Raw
+        DB --- T_Decoded
+        DB --- T_Features
+        DB --- T_Predictions
+        DB --- T_Decisions
+        DB --- T_Audit
+    end
+
+    subgraph FeatureEngineering["Feature Engineering Layer"]
+        Decoder["Raw Decoder<br/>(features/decoder.py)"]
+        FEngine["Deterministic Feature Engine<br/>(features/engine.py)<br/>30 Canonical Features<br/>(Tx, Gas, History, Graph)"]
+        Decoder -->|"Transaction Contract"| FEngine
+    end
+
+    subgraph Intelligence["Machine Learning & Risk Intelligence"]
+        Registry["Model Registry<br/>(api/dependencies.py)"]
+        XGB["Production XGBoost<br/>(models/saved/xgboost.joblib)"]
+        LR["Logistic Regression<br/>(models/saved/logisticregression.joblib)"]
+        Base["Rule-Based Baseline<br/>(models/baseline.py)"]
+        
+        Registry --> XGB
+        Registry --> LR
+        Registry --> Base
+    end
+
+    subgraph PolicyEngine["Policy & Audit Layer"]
+        DecEngine["Decision Engine<br/>(decision/engine.py)"]
+        Policy["Threshold Policy Ruleset<br/>(decision/policy.py)<br/>ALLOW < 30.0 <= FLAG <= 70.0 < HOLD"]
+        AuditLog["Immutable Audit Logger<br/>(decision/audit.py)"]
+        
+        DecEngine --> Policy
+        DecEngine --> AuditLog
+    end
+
+    subgraph Services["Application & Presentation Layer"]
+        FastAPI["FastAPI REST Service<br/>(api/app.py - Port: 8000)<br/>Endpoints: /health, /predict, /decision, /audit"]
+        Streamlit["Streamlit Security Dashboard<br/>(dashboard/app.py - Port: 8501)<br/>8 Modular Views"]
+    end
+
+    %% Pipeline connections
+    Listener -->|"Serialize & Persist Raw"| T_Raw
+    T_Raw --> Decoder
+    FEngine -->|"Insert Decoded Tx"| T_Decoded
+    FEngine -->|"Insert Feature Vector"| T_Features
+    
+    T_Features --> Registry
+    Registry -->|"Inferred Risk Score (0-100)"| DecEngine
+    DecEngine -->|"Insert Model Prediction"| T_Predictions
+    DecEngine -->|"Insert Decision"| T_Decisions
+    AuditLog -->|"Insert Audit Trail"| T_Audit
+
+    %% Service connections
+    FastAPI -->|"Dependency Injection"| DB
+    FastAPI -->|"Dependency Injection"| FEngine
+    FastAPI -->|"Dependency Injection"| Registry
+    FastAPI -->|"Dependency Injection"| DecEngine
+    
+    Streamlit -->|"HTTP REST API"| FastAPI
+    Streamlit -->|"Direct Read-Only Query"| DB

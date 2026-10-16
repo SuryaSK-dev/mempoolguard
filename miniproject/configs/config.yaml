@@ -1,0 +1,49 @@
+# MempoolGuard Default Configuration
+
+blockchain:
+  rpc_http_url: "http://127.0.0.1:8545"
+  rpc_ws_url: "ws://127.0.0.1:8545"
+  chain_id: 31337
+  poll_interval_seconds: 0.2
+  connection_timeout_seconds: 5.0
+
+database:
+  sqlite_path: "data/mempoolguard.db"
+  timeout_seconds: 10.0
+  enable_wal: true
+
+features:
+  window_seconds: 60.0
+  feature_version: "1.0.0"
+
+risk:
+  threshold_allow: 30.0
+  threshold_flag: 70.0
+  default_fallback_decision: "FLAG"
+  policy_version: "1.0.0"
+  hold_duration_seconds: 30.0
+
+models:
+  artifact_dir: "artifacts/models"
+  primary_model_filename: "xgboost_v1.json"
+  model_version: "1.0.0"
+
+api:
+  host: "127.0.0.1"
+  port: 8000
+  title: "MempoolGuard API"
+  version: "1.0.0"
+
+dashboard:
+  host: "127.0.0.1"
+  port: 8501
+  theme: "dark"
+
+logging:
+  level: "INFO"
+  format: "structured"
+
+evaluation:
+  random_seed: 42
+  test_size: 0.2
+  val_size: 0.1

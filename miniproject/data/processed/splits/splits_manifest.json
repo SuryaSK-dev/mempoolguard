@@ -1,0 +1,22 @@
+{
+  "split_type": "time_based",
+  "random_seed": 42,
+  "counts": {
+    "train": 23,
+    "val": 5,
+    "test": 6,
+    "total": 34
+  },
+  "class_distributions": {
+    "train": {
+      "1": 18,
+      "0": 5
+    },
+    "val": {
+      "1": 5
+    },
+    "test": {
+      "1": 6
+    }
+  }
+}

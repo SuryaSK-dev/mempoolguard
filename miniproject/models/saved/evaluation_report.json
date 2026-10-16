@@ -1,0 +1,331 @@
+{
+  "generated_at": "2026-09-30T11:02:05.492711+00:00",
+  "milestone": "M6",
+  "evaluation_a_m5_splits": {
+    "RuleBaseline": {
+      "model_name": "RuleBasedBaseline",
+      "split_name": "test_m5",
+      "sample_count": 6,
+      "class_distribution": {
+        "1": 6
+      },
+      "support": {
+        "class_0_benign": 0,
+        "class_1_anomaly": 6
+      },
+      "accuracy": 0.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1_score": 0.0,
+      "pr_auc": null,
+      "roc_auc": null,
+      "false_positive_rate": null,
+      "false_negative_rate": 1.0,
+      "confusion_matrix": [
+        [
+          0,
+          0
+        ],
+        [
+          6,
+          0
+        ]
+      ],
+      "inference_latency_ms": 0.07452499509478609,
+      "single_class_warning": "Split contains exclusively class 1 (support: 6). ROC-AUC, PR-AUC, and FPR cannot be meaningfully computed.",
+      "notes": [
+        "Split contains exclusively class 1 (support: 6). ROC-AUC, PR-AUC, and FPR cannot be meaningfully computed."
+      ]
+    },
+    "LogisticRegression": {
+      "model_name": "LogisticRegression",
+      "split_name": "test_m5",
+      "sample_count": 6,
+      "class_distribution": {
+        "1": 6
+      },
+      "support": {
+        "class_0_benign": 0,
+        "class_1_anomaly": 6
+      },
+      "accuracy": 0.8333333333333334,
+      "precision": 1.0,
+      "recall": 0.8333333333333334,
+      "f1_score": 0.9090909090909091,
+      "pr_auc": null,
+      "roc_auc": null,
+      "false_positive_rate": null,
+      "false_negative_rate": 0.16666666666666666,
+      "confusion_matrix": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          5
+        ]
+      ],
+      "inference_latency_ms": 0.10950001887977123,
+      "single_class_warning": "Split contains exclusively class 1 (support: 6). ROC-AUC, PR-AUC, and FPR cannot be meaningfully computed.",
+      "notes": [
+        "Split contains exclusively class 1 (support: 6). ROC-AUC, PR-AUC, and FPR cannot be meaningfully computed."
+      ]
+    },
+    "XGBoost": {
+      "model_name": "XGBoostClassifier",
+      "split_name": "test_m5",
+      "sample_count": 6,
+      "class_distribution": {
+        "1": 6
+      },
+      "support": {
+        "class_0_benign": 0,
+        "class_1_anomaly": 6
+      },
+      "accuracy": 0.8333333333333334,
+      "precision": 1.0,
+      "recall": 0.8333333333333334,
+      "f1_score": 0.9090909090909091,
+      "pr_auc": null,
+      "roc_auc": null,
+      "false_positive_rate": null,
+      "false_negative_rate": 0.16666666666666666,
+      "confusion_matrix": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          5
+        ]
+      ],
+      "inference_latency_ms": 0.25350831371421617,
+      "single_class_warning": "Split contains exclusively class 1 (support: 6). ROC-AUC, PR-AUC, and FPR cannot be meaningfully computed.",
+      "notes": [
+        "Split contains exclusively class 1 (support: 6). ROC-AUC, PR-AUC, and FPR cannot be meaningfully computed."
+      ]
+    }
+  },
+  "evaluation_b_expanded": {
+    "RuleBaseline": {
+      "model_name": "RuleBasedBaseline",
+      "split_name": "test_expanded",
+      "sample_count": 8,
+      "class_distribution": {
+        "0": 4,
+        "1": 4
+      },
+      "support": {
+        "class_0_benign": 4,
+        "class_1_anomaly": 4
+      },
+      "accuracy": 0.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1_score": 0.0,
+      "pr_auc": 0.41666666666666663,
+      "roc_auc": 0.0,
+      "false_positive_rate": 1.0,
+      "false_negative_rate": 1.0,
+      "confusion_matrix": [
+        [
+          0,
+          4
+        ],
+        [
+          4,
+          0
+        ]
+      ],
+      "inference_latency_ms": 0.06548748933710158,
+      "single_class_warning": null,
+      "notes": []
+    },
+    "LogisticRegression": {
+      "model_name": "LogisticRegression",
+      "split_name": "test_expanded",
+      "sample_count": 8,
+      "class_distribution": {
+        "0": 4,
+        "1": 4
+      },
+      "support": {
+        "class_0_benign": 4,
+        "class_1_anomaly": 4
+      },
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0,
+      "pr_auc": 1.0,
+      "roc_auc": 1.0,
+      "false_positive_rate": 0.0,
+      "false_negative_rate": 0.0,
+      "confusion_matrix": [
+        [
+          4,
+          0
+        ],
+        [
+          0,
+          4
+        ]
+      ],
+      "inference_latency_ms": 0.08550001075491309,
+      "single_class_warning": null,
+      "notes": []
+    },
+    "XGBoost": {
+      "model_name": "XGBoostClassifier",
+      "split_name": "test_expanded",
+      "sample_count": 8,
+      "class_distribution": {
+        "0": 4,
+        "1": 4
+      },
+      "support": {
+        "class_0_benign": 4,
+        "class_1_anomaly": 4
+      },
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0,
+      "pr_auc": 1.0,
+      "roc_auc": 1.0,
+      "false_positive_rate": 0.0,
+      "false_negative_rate": 0.0,
+      "confusion_matrix": [
+        [
+          4,
+          0
+        ],
+        [
+          0,
+          4
+        ]
+      ],
+      "inference_latency_ms": 0.2186124911531806,
+      "single_class_warning": null,
+      "notes": []
+    }
+  },
+  "label_leakage_audit": {
+    "scenarios_audited": 8,
+    "direct_dependency_count": 8,
+    "scenario_dependencies": [
+      {
+        "scenario_id": "BENIGN_TRANSFER",
+        "expected_label": 0,
+        "generator_behavior": "Dispatches baseline ETH value transfers with standard network base fee.",
+        "correlated_features": [
+          "gas_price_to_window_ratio",
+          "is_burst_activity",
+          "is_fan_out",
+          "is_contract_call"
+        ],
+        "leakage_risk_level": "HIGH",
+        "explanation": "Benign transfers exhibit near-unity gas ratios (approx 1.0), zero burst indicators, and zero calldata. Models easily classify these by the absence of anomaly flags."
+      },
+      {
+        "scenario_id": "REPEATED_TRANSFER",
+        "expected_label": 1,
+        "generator_behavior": "Sends rapid consecutive transfers between identical sender & receiver accounts.",
+        "correlated_features": [
+          "is_repeated_transfer",
+          "sender_receiver_tx_count",
+          "sender_receiver_existing_relationship"
+        ],
+        "leakage_risk_level": "HIGH",
+        "explanation": "Generator behavior directly increments sender_receiver_tx_count and trips is_repeated_transfer. The feature engine was specifically designed to capture this pattern."
+      },
+      {
+        "scenario_id": "GAS_SPIKE",
+        "expected_label": 1,
+        "generator_behavior": "Sets gas price to 25x the target block base fee simulating aggressive front-running.",
+        "correlated_features": [
+          "gas_price_gwei",
+          "gas_price_to_window_ratio",
+          "max_fee_per_gas_gwei"
+        ],
+        "leakage_risk_level": "HIGH",
+        "explanation": "The label is assigned based on fee inflation, which directly maps to gas_price_gwei. Trained models learn a clean threshold partition on this feature."
+      },
+      {
+        "scenario_id": "GAS_DEVIATION_LOW",
+        "expected_label": 1,
+        "generator_behavior": "Dispatches transactions with sub-base or zero priority fee.",
+        "correlated_features": [
+          "gas_price_gwei",
+          "gas_price_to_window_ratio"
+        ],
+        "leakage_risk_level": "MEDIUM",
+        "explanation": "Sub-base fee transactions manifest directly as gas_price_gwei < 1.0. The classifier easily separates this distinct lower bound."
+      },
+      {
+        "scenario_id": "BURST_ACTIVITY",
+        "expected_label": 1,
+        "generator_behavior": "Submits 6 transactions within seconds from a single account.",
+        "correlated_features": [
+          "window_tx_count_10s",
+          "window_tx_count_60s",
+          "is_burst_activity"
+        ],
+        "leakage_risk_level": "HIGH",
+        "explanation": "Window counting features directly reflect the generator's rapid submission frequency. Models can trivially classify bursts using window_tx_count_10s >= 3."
+      },
+      {
+        "scenario_id": "FAN_OUT",
+        "expected_label": 1,
+        "generator_behavior": "Dispatches transfers to 5 distinct destination addresses within 60s.",
+        "correlated_features": [
+          "window_unique_receivers_60s",
+          "is_fan_out",
+          "sender_out_degree"
+        ],
+        "leakage_risk_level": "HIGH",
+        "explanation": "The scenario definition matches the formula for window_unique_receivers_60s. A strong direct correlation exists between the generator loop and graph out-degree."
+      },
+      {
+        "scenario_id": "REPEATED_INTERACTIONS",
+        "expected_label": 1,
+        "generator_behavior": "Cyclic interaction alternating transfers between sender and receiver.",
+        "correlated_features": [
+          "sender_receiver_tx_count",
+          "sender_receiver_existing_relationship"
+        ],
+        "leakage_risk_level": "MEDIUM",
+        "explanation": "Historical pair interactions are recorded directly by the database history query, creating a strong feature signal."
+      },
+      {
+        "scenario_id": "CONTRACT_CALL",
+        "expected_label": 1,
+        "generator_behavior": "Attaches non-empty contract bytecode/calldata payload.",
+        "correlated_features": [
+          "is_contract_call",
+          "calldata_size_bytes",
+          "function_selector_hash"
+        ],
+        "leakage_risk_level": "HIGH",
+        "explanation": "Because benign transactions in this PoC have calldata_size_bytes == 0, any transaction with is_contract_call == 1 is easily separated by models."
+      }
+    ],
+    "summary_findings": "Audit confirms that 8 out of 8 synthetic scenarios define their ground-truth labels using behavioral attributes that directly map to one or more canonical features in the pre-confirmation feature space.",
+    "benchmark_limitation_statement": "CRITICAL BENCHMARK LIMITATION: In this synthetic proof-of-concept environment, the machine learning models and heuristic rules are effectively learning the parameter boundaries established by the synthetic transaction generator (e.g. gas multiplier thresholds, burst frequencies, calldata presence). High precision and recall scores on this local dataset reflect effective detection of these specific synthetic archetypes, but DO NOT provide evidence of real-world fraud detection efficacy on live public mainnets where adversarial strategies are obfuscated, multi-hop, and dynamically priced."
+  },
+  "persisted_artifacts": {
+    "RuleBaseline": {
+      "metadata": "models\\saved\\rulebaseline_metadata.json"
+    },
+    "LogisticRegression": {
+      "model": "models\\saved\\logisticregression.joblib",
+      "metadata": "models\\saved\\logisticregression_metadata.json"
+    },
+    "XGBoost": {
+      "model": "models\\saved\\xgboost.joblib",
+      "metadata": "models\\saved\\xgboost_metadata.json"
+    }
+  }
+}

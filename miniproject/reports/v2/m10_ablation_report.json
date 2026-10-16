@@ -1,0 +1,930 @@
+{
+  "metadata": {
+    "milestone": "M10",
+    "study_name": "MempoolGuard Feature Group Ablation Study",
+    "generated_at": "2026-10-03T04:58:44Z",
+    "total_runs": 21,
+    "canonical_features_count": 29,
+    "feature_groups": {
+      "G1_transaction_value": {
+        "id": "G1",
+        "name": "Transaction Value & Core",
+        "count": 3,
+        "features": [
+          "value_eth",
+          "value_wei_log10",
+          "tx_type"
+        ],
+        "description": "Intrinsic financial transfer magnitude and transaction type classification."
+      },
+      "G2_gas_fees": {
+        "id": "G2",
+        "name": "Gas & Fee Mechanics",
+        "count": 6,
+        "features": [
+          "gas_limit",
+          "gas_price_gwei",
+          "max_fee_per_gas_gwei",
+          "max_priority_fee_per_gas_gwei",
+          "window_gas_price_mean_gwei",
+          "gas_price_to_window_ratio"
+        ],
+        "description": "Absolute gas pricing, EIP-1559 fee priority, and pricing deviation ratios relative to local 60s windows."
+      },
+      "G3_calldata_interaction": {
+        "id": "G3",
+        "name": "Calldata & Interaction",
+        "count": 4,
+        "features": [
+          "calldata_size_bytes",
+          "is_contract_call",
+          "is_contract_creation",
+          "function_selector_hash"
+        ],
+        "description": "Smart contract execution indicators, calldata payload volume, and 4-byte EVM function selectors."
+      },
+      "G4_account_history": {
+        "id": "G4",
+        "name": "Account History Profile",
+        "count": 6,
+        "features": [
+          "sender_historical_tx_count",
+          "receiver_historical_tx_count",
+          "sender_receiver_tx_count",
+          "sender_receiver_existing_relationship",
+          "sender_historical_avg_value_eth",
+          "sender_historical_avg_gas_limit"
+        ],
+        "description": "Historical transaction counts, sender-receiver prior interaction history, and long-term average value/gas baselines strictly prior to first_seen_at."
+      },
+      "G5_temporal_burst": {
+        "id": "G5",
+        "name": "Temporal Burst & Flow",
+        "count": 6,
+        "features": [
+          "window_tx_count_60s",
+          "window_tx_count_10s",
+          "window_unique_receivers_60s",
+          "is_burst_activity",
+          "is_fan_out",
+          "is_repeated_transfer"
+        ],
+        "description": "Short-horizon mempool velocity, burst flags, multi-recipient fan-out dispersion, and identical-value transfer loops."
+      },
+      "G6_graph_topology": {
+        "id": "G6",
+        "name": "Graph Topology & Centrality",
+        "count": 4,
+        "features": [
+          "sender_out_degree",
+          "receiver_in_degree",
+          "sender_pagerank",
+          "receiver_pagerank"
+        ],
+        "description": "Transaction graph connectivity metrics, node in/out degree, and network centrality PageRank scores."
+      }
+    }
+  },
+  "results": [
+    {
+      "dataset": "v2_Remediated_Benchmark",
+      "model": "RuleBaseline",
+      "config_id": "full_30_features",
+      "config_name": "Full Baseline",
+      "removed_group": null,
+      "removed_group_name": "None (Reference Baseline)",
+      "feature_count": 29,
+      "fit_time_ms": 0.0,
+      "inference_latency_ms": 0.282,
+      "threshold": 0.5,
+      "sample_count": 135,
+      "support": {
+        "class_0_benign": 60,
+        "class_1_anomaly": 75
+      },
+      "accuracy": 0.45185185185185184,
+      "precision": 0.5041322314049587,
+      "recall": 0.8133333333333334,
+      "f1_score": 0.6224489795918368,
+      "pr_auc": 0.605940920872918,
+      "roc_auc": 0.44,
+      "false_positive_rate": 1.0,
+      "confusion_matrix": [
+        [
+          0,
+          60
+        ],
+        [
+          14,
+          61
+        ]
+      ],
+      "single_class_warning": null,
+      "delta_precision": 0.0,
+      "delta_recall": 0.0,
+      "delta_f1": 0.0,
+      "delta_pr_auc": 0.0,
+      "delta_latency_ms": 0.0
+    },
+    {
+      "dataset": "v2_Remediated_Benchmark",
+      "model": "LogisticRegression",
+      "config_id": "full_30_features",
+      "config_name": "Full Baseline",
+      "removed_group": null,
+      "removed_group_name": "None (Reference Baseline)",
+      "feature_count": 29,
+      "fit_time_ms": 89.404,
+      "inference_latency_ms": 0.05,
+      "threshold": 0.6,
+      "sample_count": 135,
+      "support": {
+        "class_0_benign": 60,
+        "class_1_anomaly": 75
+      },
+      "accuracy": 0.9185185185185185,
+      "precision": 1.0,
+      "recall": 0.8533333333333334,
+      "f1_score": 0.920863309352518,
+      "pr_auc": 0.9804240123974408,
+      "roc_auc": 0.9657777777777778,
+      "false_positive_rate": 0.0,
+      "confusion_matrix": [
+        [
+          60,
+          0
+        ],
+        [
+          11,
+          64
+        ]
+      ],
+      "single_class_warning": null,
+      "delta_precision": 0.0,
+      "delta_recall": 0.0,
+      "delta_f1": 0.0,
+      "delta_pr_auc": 0.0,
+      "delta_latency_ms": 0.0
+    },
+    {
+      "dataset": "v2_Remediated_Benchmark",
+      "model": "XGBoost",
+      "config_id": "full_30_features",
+      "config_name": "Full Baseline",
+      "removed_group": null,
+      "removed_group_name": "None (Reference Baseline)",
+      "feature_count": 29,
+      "fit_time_ms": 241.864,
+      "inference_latency_ms": 0.033,
+      "threshold": 0.75,
+      "sample_count": 135,
+      "support": {
+        "class_0_benign": 60,
+        "class_1_anomaly": 75
+      },
+      "accuracy": 0.9777777777777777,
+      "precision": 1.0,
+      "recall": 0.96,
+      "f1_score": 0.9795918367346939,
+      "pr_auc": 0.9919552289815446,
+      "roc_auc": 0.9862222222222222,
+      "false_positive_rate": 0.0,
+      "confusion_matrix": [
+        [
+          60,
+          0
+        ],
+        [
+          3,
+          72
+        ]
+      ],
+      "single_class_warning": null,
+      "delta_precision": 0.0,
+      "delta_recall": 0.0,
+      "delta_f1": 0.0,
+      "delta_pr_auc": 0.0,
+      "delta_latency_ms": 0.0
+    },
+    {
+      "dataset": "v2_Remediated_Benchmark",
+      "model": "RuleBaseline",
+      "config_id": "minus_G1_transaction_value",
+      "config_name": "Minus G1 (Transaction Value & Core)",
+      "removed_group": "G1",
+      "removed_group_name": "Transaction Value & Core",
+      "feature_count": 26,
+      "fit_time_ms": 0.0,
+      "inference_latency_ms": 0.29,
+      "threshold": 0.5,
+      "sample_count": 135,
+      "support": {
+        "class_0_benign": 60,
+        "class_1_anomaly": 75
+      },
+      "accuracy": 0.45185185185185184,
+      "precision": 0.5041322314049587,
+      "recall": 0.8133333333333334,
+      "f1_score": 0.6224489795918368,
+      "pr_auc": 0.605940920872918,
+      "roc_auc": 0.44,
+      "false_positive_rate": 1.0,
+      "confusion_matrix": [
+        [
+          0,
+          60
+        ],
+        [
+          14,
+          61
+        ]
+      ],
+      "single_class_warning": null,
+      "delta_precision": 0.0,
+      "delta_recall": 0.0,
+      "delta_f1": 0.0,
+      "delta_pr_auc": 0.0,
+      "delta_latency_ms": 0.008
+    },
+    {
+      "dataset": "v2_Remediated_Benchmark",
+      "model": "LogisticRegression",
+      "config_id": "minus_G1_transaction_value",
+      "config_name": "Minus G1 (Transaction Value & Core)",
+      "removed_group": "G1",
+      "removed_group_name": "Transaction Value & Core",
+      "feature_count": 26,
+      "fit_time_ms": 51.592,
+      "inference_latency_ms": 0.045,
+      "threshold": 0.6,
+      "sample_count": 135,
+      "support": {
+        "class_0_benign": 60,
+        "class_1_anomaly": 75
+      },
+      "accuracy": 0.9185185185185185,
+      "precision": 1.0,
+      "recall": 0.8533333333333334,
+      "f1_score": 0.920863309352518,
+      "pr_auc": 0.9824422634539279,
+      "roc_auc": 0.9684444444444444,
+      "false_positive_rate": 0.0,
+      "confusion_matrix": [
+        [
+          60,
+          0
+        ],
+        [
+          11,
+          64
+        ]
+      ],
+      "single_class_warning": null,
+      "delta_precision": 0.0,
+      "delta_recall": 0.0,
+      "delta_f1": 0.0,
+      "delta_pr_auc": 0.002,
+      "delta_latency_ms": -0.005
+    },
+    {
+      "dataset": "v2_Remediated_Benchmark",
+      "model": "XGBoost",
+      "config_id": "minus_G1_transaction_value",
+      "config_name": "Minus G1 (Transaction Value & Core)",
+      "removed_group": "G1",
+      "removed_group_name": "Transaction Value & Core",
+      "feature_count": 26,
+      "fit_time_ms": 168.449,
+      "inference_latency_ms": 0.032,
+      "threshold": 0.75,
+      "sample_count": 135,
+      "support": {
+        "class_0_benign": 60,
+        "class_1_anomaly": 75
+      },
+      "accuracy": 0.9777777777777777,
+      "precision": 1.0,
+      "recall": 0.96,
+      "f1_score": 0.9795918367346939,
+      "pr_auc": 0.9919552289815446,
+      "roc_auc": 0.9862222222222222,
+      "false_positive_rate": 0.0,
+      "confusion_matrix": [
+        [
+          60,
+          0
+        ],
+        [
+          3,
+          72
+        ]
+      ],
+      "single_class_warning": null,
+      "delta_precision": 0.0,
+      "delta_recall": 0.0,
+      "delta_f1": 0.0,
+      "delta_pr_auc": 0.0,
+      "delta_latency_ms": -0.001
+    },
+    {
+      "dataset": "v2_Remediated_Benchmark",
+      "model": "RuleBaseline",
+      "config_id": "minus_G2_gas_fees",
+      "config_name": "Minus G2 (Gas & Fee Mechanics)",
+      "removed_group": "G2",
+      "removed_group_name": "Gas & Fee Mechanics",
+      "feature_count": 23,
+      "fit_time_ms": 0.0,
+      "inference_latency_ms": 0.245,
+      "threshold": 0.5,
+      "sample_count": 135,
+      "support": {
+        "class_0_benign": 60,
+        "class_1_anomaly": 75
+      },
+      "accuracy": 0.45185185185185184,
+      "precision": 0.5041322314049587,
+      "recall": 0.8133333333333334,
+      "f1_score": 0.6224489795918368,
+      "pr_auc": 0.5111855752084814,
+      "roc_auc": 0.33999999999999997,
+      "false_positive_rate": 1.0,
+      "confusion_matrix": [
+        [
+          0,
+          60
+        ],
+        [
+          14,
+          61
+        ]
+      ],
+      "single_class_warning": null,
+      "delta_precision": 0.0,
+      "delta_recall": 0.0,
+      "delta_f1": 0.0,
+      "delta_pr_auc": -0.0948,
+      "delta_latency_ms": -0.037
+    },
+    {
+      "dataset": "v2_Remediated_Benchmark",
+      "model": "LogisticRegression",
+      "config_id": "minus_G2_gas_fees",
+      "config_name": "Minus G2 (Gas & Fee Mechanics)",
+      "removed_group": "G2",
+      "removed_group_name": "Gas & Fee Mechanics",
+      "feature_count": 23,
+      "fit_time_ms": 36.119,
+      "inference_latency_ms": 0.027,
+      "threshold": 0.3,
+      "sample_count": 135,
+      "support": {
+        "class_0_benign": 60,
+        "class_1_anomaly": 75
+      },
+      "accuracy": 0.8592592592592593,
+      "precision": 0.8783783783783784,
+      "recall": 0.8666666666666667,
+      "f1_score": 0.87248322147651,
+      "pr_auc": 0.9722600994938194,
+      "roc_auc": 0.9542222222222222,
+      "false_positive_rate": 0.15,
+      "confusion_matrix": [
+        [
+          51,
+          9
+        ],
+        [
+          10,
+          65
+        ]
+      ],
+      "single_class_warning": null,
+      "delta_precision": -0.1216,
+      "delta_recall": 0.0133,
+      "delta_f1": -0.0484,
+      "delta_pr_auc": -0.0082,
+      "delta_latency_ms": -0.023
+    },
+    {
+      "dataset": "v2_Remediated_Benchmark",
+      "model": "XGBoost",
+      "config_id": "minus_G2_gas_fees",
+      "config_name": "Minus G2 (Gas & Fee Mechanics)",
+      "removed_group": "G2",
+      "removed_group_name": "Gas & Fee Mechanics",
+      "feature_count": 23,
+      "fit_time_ms": 125.664,
+      "inference_latency_ms": 0.029,
+      "threshold": 0.5,
+      "sample_count": 135,
+      "support": {
+        "class_0_benign": 60,
+        "class_1_anomaly": 75
+      },
+      "accuracy": 0.9185185185185185,
+      "precision": 0.9848484848484849,
+      "recall": 0.8666666666666667,
+      "f1_score": 0.9219858156028369,
+      "pr_auc": 0.9922757180045607,
+      "roc_auc": 0.9893333333333334,
+      "false_positive_rate": 0.016666666666666666,
+      "confusion_matrix": [
+        [
+          59,
+          1
+        ],
+        [
+          10,
+          65
+        ]
+      ],
+      "single_class_warning": null,
+      "delta_precision": -0.0152,
+      "delta_recall": -0.0933,
+      "delta_f1": -0.0576,
+      "delta_pr_auc": 0.0003,
+      "delta_latency_ms": -0.004
+    },
+    {
+      "dataset": "v2_Remediated_Benchmark",
+      "model": "RuleBaseline",
+      "config_id": "minus_G3_calldata_interaction",
+      "config_name": "Minus G3 (Calldata & Interaction)",
+      "removed_group": "G3",
+      "removed_group_name": "Calldata & Interaction",
+      "feature_count": 25,
+      "fit_time_ms": 0.0,
+      "inference_latency_ms": 0.248,
+      "threshold": 0.5,
+      "sample_count": 135,
+      "support": {
+        "class_0_benign": 60,
+        "class_1_anomaly": 75
+      },
+      "accuracy": 0.45185185185185184,
+      "precision": 0.5041322314049587,
+      "recall": 0.8133333333333334,
+      "f1_score": 0.6224489795918368,
+      "pr_auc": 0.5621802371122342,
+      "roc_auc": 0.4,
+      "false_positive_rate": 1.0,
+      "confusion_matrix": [
+        [
+          0,
+          60
+        ],
+        [
+          14,
+          61
+        ]
+      ],
+      "single_class_warning": null,
+      "delta_precision": 0.0,
+      "delta_recall": 0.0,
+      "delta_f1": 0.0,
+      "delta_pr_auc": -0.0438,
+      "delta_latency_ms": -0.034
+    },
+    {
+      "dataset": "v2_Remediated_Benchmark",
+      "model": "LogisticRegression",
+      "config_id": "minus_G3_calldata_interaction",
+      "config_name": "Minus G3 (Calldata & Interaction)",
+      "removed_group": "G3",
+      "removed_group_name": "Calldata & Interaction",
+      "feature_count": 25,
+      "fit_time_ms": 35.942,
+      "inference_latency_ms": 0.029,
+      "threshold": 0.9,
+      "sample_count": 135,
+      "support": {
+        "class_0_benign": 60,
+        "class_1_anomaly": 75
+      },
+      "accuracy": 0.8444444444444444,
+      "precision": 1.0,
+      "recall": 0.72,
+      "f1_score": 0.8372093023255814,
+      "pr_auc": 0.9790216177661375,
+      "roc_auc": 0.9642222222222221,
+      "false_positive_rate": 0.0,
+      "confusion_matrix": [
+        [
+          60,
+          0
+        ],
+        [
+          21,
+          54
+        ]
+      ],
+      "single_class_warning": null,
+      "delta_precision": 0.0,
+      "delta_recall": -0.1333,
+      "delta_f1": -0.0837,
+      "delta_pr_auc": -0.0014,
+      "delta_latency_ms": -0.021
+    },
+    {
+      "dataset": "v2_Remediated_Benchmark",
+      "model": "XGBoost",
+      "config_id": "minus_G3_calldata_interaction",
+      "config_name": "Minus G3 (Calldata & Interaction)",
+      "removed_group": "G3",
+      "removed_group_name": "Calldata & Interaction",
+      "feature_count": 25,
+      "fit_time_ms": 113.79,
+      "inference_latency_ms": 0.029,
+      "threshold": 0.75,
+      "sample_count": 135,
+      "support": {
+        "class_0_benign": 60,
+        "class_1_anomaly": 75
+      },
+      "accuracy": 0.9777777777777777,
+      "precision": 1.0,
+      "recall": 0.96,
+      "f1_score": 0.9795918367346939,
+      "pr_auc": 0.9920657179699733,
+      "roc_auc": 0.9864444444444445,
+      "false_positive_rate": 0.0,
+      "confusion_matrix": [
+        [
+          60,
+          0
+        ],
+        [
+          3,
+          72
+        ]
+      ],
+      "single_class_warning": null,
+      "delta_precision": 0.0,
+      "delta_recall": 0.0,
+      "delta_f1": 0.0,
+      "delta_pr_auc": 0.0001,
+      "delta_latency_ms": -0.004
+    },
+    {
+      "dataset": "v2_Remediated_Benchmark",
+      "model": "RuleBaseline",
+      "config_id": "minus_G4_account_history",
+      "config_name": "Minus G4 (Account History Profile)",
+      "removed_group": "G4",
+      "removed_group_name": "Account History Profile",
+      "feature_count": 23,
+      "fit_time_ms": 0.0,
+      "inference_latency_ms": 0.164,
+      "threshold": 0.5,
+      "sample_count": 135,
+      "support": {
+        "class_0_benign": 60,
+        "class_1_anomaly": 75
+      },
+      "accuracy": 0.43703703703703706,
+      "precision": 0.4957983193277311,
+      "recall": 0.7866666666666666,
+      "f1_score": 0.6082474226804123,
+      "pr_auc": 0.6863890807012623,
+      "roc_auc": 0.5733333333333333,
+      "false_positive_rate": 1.0,
+      "confusion_matrix": [
+        [
+          0,
+          60
+        ],
+        [
+          16,
+          59
+        ]
+      ],
+      "single_class_warning": null,
+      "delta_precision": -0.0083,
+      "delta_recall": -0.0267,
+      "delta_f1": -0.0142,
+      "delta_pr_auc": 0.0804,
+      "delta_latency_ms": -0.118
+    },
+    {
+      "dataset": "v2_Remediated_Benchmark",
+      "model": "LogisticRegression",
+      "config_id": "minus_G4_account_history",
+      "config_name": "Minus G4 (Account History Profile)",
+      "removed_group": "G4",
+      "removed_group_name": "Account History Profile",
+      "feature_count": 23,
+      "fit_time_ms": 31.513,
+      "inference_latency_ms": 0.032,
+      "threshold": 0.45,
+      "sample_count": 135,
+      "support": {
+        "class_0_benign": 60,
+        "class_1_anomaly": 75
+      },
+      "accuracy": 0.7925925925925926,
+      "precision": 0.7701149425287356,
+      "recall": 0.8933333333333333,
+      "f1_score": 0.8271604938271605,
+      "pr_auc": 0.8939680974618904,
+      "roc_auc": 0.8591111111111112,
+      "false_positive_rate": 0.3333333333333333,
+      "confusion_matrix": [
+        [
+          40,
+          20
+        ],
+        [
+          8,
+          67
+        ]
+      ],
+      "single_class_warning": null,
+      "delta_precision": -0.2299,
+      "delta_recall": 0.04,
+      "delta_f1": -0.0937,
+      "delta_pr_auc": -0.0865,
+      "delta_latency_ms": -0.018
+    },
+    {
+      "dataset": "v2_Remediated_Benchmark",
+      "model": "XGBoost",
+      "config_id": "minus_G4_account_history",
+      "config_name": "Minus G4 (Account History Profile)",
+      "removed_group": "G4",
+      "removed_group_name": "Account History Profile",
+      "feature_count": 23,
+      "fit_time_ms": 93.443,
+      "inference_latency_ms": 0.025,
+      "threshold": 0.65,
+      "sample_count": 135,
+      "support": {
+        "class_0_benign": 60,
+        "class_1_anomaly": 75
+      },
+      "accuracy": 0.8592592592592593,
+      "precision": 0.8414634146341463,
+      "recall": 0.92,
+      "f1_score": 0.8789808917197452,
+      "pr_auc": 0.9313241784862454,
+      "roc_auc": 0.9268888888888889,
+      "false_positive_rate": 0.21666666666666667,
+      "confusion_matrix": [
+        [
+          47,
+          13
+        ],
+        [
+          6,
+          69
+        ]
+      ],
+      "single_class_warning": null,
+      "delta_precision": -0.1585,
+      "delta_recall": -0.04,
+      "delta_f1": -0.1006,
+      "delta_pr_auc": -0.0606,
+      "delta_latency_ms": -0.008
+    },
+    {
+      "dataset": "v2_Remediated_Benchmark",
+      "model": "RuleBaseline",
+      "config_id": "minus_G5_temporal_burst",
+      "config_name": "Minus G5 (Temporal Burst & Flow)",
+      "removed_group": "G5",
+      "removed_group_name": "Temporal Burst & Flow",
+      "feature_count": 23,
+      "fit_time_ms": 0.0,
+      "inference_latency_ms": 0.324,
+      "threshold": 0.5,
+      "sample_count": 135,
+      "support": {
+        "class_0_benign": 60,
+        "class_1_anomaly": 75
+      },
+      "accuracy": 0.4888888888888889,
+      "precision": 1.0,
+      "recall": 0.08,
+      "f1_score": 0.14814814814814814,
+      "pr_auc": 0.6156634188492596,
+      "roc_auc": 0.4533333333333333,
+      "false_positive_rate": 0.0,
+      "confusion_matrix": [
+        [
+          60,
+          0
+        ],
+        [
+          69,
+          6
+        ]
+      ],
+      "single_class_warning": null,
+      "delta_precision": 0.4959,
+      "delta_recall": -0.7333,
+      "delta_f1": -0.4743,
+      "delta_pr_auc": 0.0097,
+      "delta_latency_ms": 0.042
+    },
+    {
+      "dataset": "v2_Remediated_Benchmark",
+      "model": "LogisticRegression",
+      "config_id": "minus_G5_temporal_burst",
+      "config_name": "Minus G5 (Temporal Burst & Flow)",
+      "removed_group": "G5",
+      "removed_group_name": "Temporal Burst & Flow",
+      "feature_count": 23,
+      "fit_time_ms": 45.05,
+      "inference_latency_ms": 0.036,
+      "threshold": 0.6,
+      "sample_count": 135,
+      "support": {
+        "class_0_benign": 60,
+        "class_1_anomaly": 75
+      },
+      "accuracy": 0.8814814814814815,
+      "precision": 0.927536231884058,
+      "recall": 0.8533333333333334,
+      "f1_score": 0.8888888888888888,
+      "pr_auc": 0.9642072627624961,
+      "roc_auc": 0.9411111111111111,
+      "false_positive_rate": 0.08333333333333333,
+      "confusion_matrix": [
+        [
+          55,
+          5
+        ],
+        [
+          11,
+          64
+        ]
+      ],
+      "single_class_warning": null,
+      "delta_precision": -0.0725,
+      "delta_recall": 0.0,
+      "delta_f1": -0.032,
+      "delta_pr_auc": -0.0162,
+      "delta_latency_ms": -0.014
+    },
+    {
+      "dataset": "v2_Remediated_Benchmark",
+      "model": "XGBoost",
+      "config_id": "minus_G5_temporal_burst",
+      "config_name": "Minus G5 (Temporal Burst & Flow)",
+      "removed_group": "G5",
+      "removed_group_name": "Temporal Burst & Flow",
+      "feature_count": 23,
+      "fit_time_ms": 135.729,
+      "inference_latency_ms": 0.029,
+      "threshold": 0.8,
+      "sample_count": 135,
+      "support": {
+        "class_0_benign": 60,
+        "class_1_anomaly": 75
+      },
+      "accuracy": 0.8740740740740741,
+      "precision": 0.9393939393939394,
+      "recall": 0.8266666666666667,
+      "f1_score": 0.8794326241134752,
+      "pr_auc": 0.9653718928455837,
+      "roc_auc": 0.9482222222222223,
+      "false_positive_rate": 0.06666666666666667,
+      "confusion_matrix": [
+        [
+          56,
+          4
+        ],
+        [
+          13,
+          62
+        ]
+      ],
+      "single_class_warning": null,
+      "delta_precision": -0.0606,
+      "delta_recall": -0.1333,
+      "delta_f1": -0.1002,
+      "delta_pr_auc": -0.0266,
+      "delta_latency_ms": -0.004
+    },
+    {
+      "dataset": "v2_Remediated_Benchmark",
+      "model": "RuleBaseline",
+      "config_id": "minus_G6_graph_topology",
+      "config_name": "Minus G6 (Graph Topology & Centrality)",
+      "removed_group": "G6",
+      "removed_group_name": "Graph Topology & Centrality",
+      "feature_count": 25,
+      "fit_time_ms": 0.0,
+      "inference_latency_ms": 0.201,
+      "threshold": 0.5,
+      "sample_count": 135,
+      "support": {
+        "class_0_benign": 60,
+        "class_1_anomaly": 75
+      },
+      "accuracy": 0.45185185185185184,
+      "precision": 0.5041322314049587,
+      "recall": 0.8133333333333334,
+      "f1_score": 0.6224489795918368,
+      "pr_auc": 0.605940920872918,
+      "roc_auc": 0.44,
+      "false_positive_rate": 1.0,
+      "confusion_matrix": [
+        [
+          0,
+          60
+        ],
+        [
+          14,
+          61
+        ]
+      ],
+      "single_class_warning": null,
+      "delta_precision": 0.0,
+      "delta_recall": 0.0,
+      "delta_f1": 0.0,
+      "delta_pr_auc": 0.0,
+      "delta_latency_ms": -0.081
+    },
+    {
+      "dataset": "v2_Remediated_Benchmark",
+      "model": "LogisticRegression",
+      "config_id": "minus_G6_graph_topology",
+      "config_name": "Minus G6 (Graph Topology & Centrality)",
+      "removed_group": "G6",
+      "removed_group_name": "Graph Topology & Centrality",
+      "feature_count": 25,
+      "fit_time_ms": 31.349,
+      "inference_latency_ms": 0.028,
+      "threshold": 0.65,
+      "sample_count": 135,
+      "support": {
+        "class_0_benign": 60,
+        "class_1_anomaly": 75
+      },
+      "accuracy": 0.8962962962962963,
+      "precision": 1.0,
+      "recall": 0.8133333333333334,
+      "f1_score": 0.8970588235294118,
+      "pr_auc": 0.9941293532338307,
+      "roc_auc": 0.9868888888888889,
+      "false_positive_rate": 0.0,
+      "confusion_matrix": [
+        [
+          60,
+          0
+        ],
+        [
+          14,
+          61
+        ]
+      ],
+      "single_class_warning": null,
+      "delta_precision": 0.0,
+      "delta_recall": -0.04,
+      "delta_f1": -0.0238,
+      "delta_pr_auc": 0.0137,
+      "delta_latency_ms": -0.022
+    },
+    {
+      "dataset": "v2_Remediated_Benchmark",
+      "model": "XGBoost",
+      "config_id": "minus_G6_graph_topology",
+      "config_name": "Minus G6 (Graph Topology & Centrality)",
+      "removed_group": "G6",
+      "removed_group_name": "Graph Topology & Centrality",
+      "feature_count": 25,
+      "fit_time_ms": 116.985,
+      "inference_latency_ms": 0.027,
+      "threshold": 0.55,
+      "sample_count": 135,
+      "support": {
+        "class_0_benign": 60,
+        "class_1_anomaly": 75
+      },
+      "accuracy": 0.9333333333333333,
+      "precision": 0.9125,
+      "recall": 0.9733333333333334,
+      "f1_score": 0.9419354838709677,
+      "pr_auc": 0.9898580830948988,
+      "roc_auc": 0.9822222222222222,
+      "false_positive_rate": 0.11666666666666667,
+      "confusion_matrix": [
+        [
+          53,
+          7
+        ],
+        [
+          2,
+          73
+        ]
+      ],
+      "single_class_warning": null,
+      "delta_precision": -0.0875,
+      "delta_recall": 0.0133,
+      "delta_f1": -0.0377,
+      "delta_pr_auc": -0.0021,
+      "delta_latency_ms": -0.006
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+stateDiagram-v2
+    [*] --> PENDING: Dispatched to EVM Mempool
+    
+    state PENDING {
+        [*] --> TX_RECEIVED: Observed by MempoolListener
+        TX_RECEIVED --> RAW_PERSISTED: Inserted into raw_transactions
+        RAW_PERSISTED --> DECODED: Payload decoded & inserted into decoded_transactions
+        DECODED --> FEATURE_EXTRACTED: 30 canonical features extracted & saved
+    }
+
+    state EVALUATING {
+        FEATURE_EXTRACTED --> MODEL_INFERENCE: Features passed to XGBoost
+        MODEL_INFERENCE --> RISK_PREDICTED: Risk Score (0-100) calculated
+        
+        state Policy_Branch <<choice>>
+        RISK_PREDICTED --> Policy_Branch: Evaluated against thresholds
+        
+        Policy_Branch --> ALLOW: Risk Score < 30.0
+        Policy_Branch --> FLAG: 30.0 <= Risk Score <= 70.0
+        Policy_Branch --> HOLD: Risk Score > 70.0
+        
+        MODEL_INFERENCE --> FALLBACK_APPLIED: Model/Feature Failure
+        FALLBACK_APPLIED --> FLAG: Safe default fallback
+    }
+
+    state AUDITING {
+        ALLOW --> DECISION_ISSUED: Logged to decisions & audit_records
+        FLAG --> DECISION_ISSUED: Logged to decisions & audit_records
+        HOLD --> DECISION_ISSUED: Logged to decisions (expires_at +30s) & audit_records
+    }
+
+    DECISION_ISSUED --> CONFIRMED: Block Mined on EVM (evm_mine)
+    DECISION_ISSUED --> FAILED: Dropped / Evicted from Mempool
+    
+    CONFIRMED --> [*]
+    FAILED --> [*]

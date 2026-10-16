@@ -1,0 +1,394 @@
+{
+  "generated_at": "2026-10-03T04:57:29.134364+00:00",
+  "milestone": "M6_v2",
+  "feature_schema_version": "1.1.0",
+  "feature_count": 29,
+  "excluded_features": [
+    "nonce"
+  ],
+  "splits_summary": {
+    "train_rows": 810,
+    "val_rows": 180,
+    "test_rows": 135,
+    "train_labels": {
+      "1": 450,
+      "0": 360
+    },
+    "val_labels": {
+      "1": 100,
+      "0": 80
+    },
+    "test_labels": {
+      "1": 75,
+      "0": 60
+    }
+  },
+  "single_feature_aucs": {
+    "value_eth": 0.5318,
+    "value_wei_log10": 0.5318,
+    "gas_limit": 0.562,
+    "gas_price_gwei": 0.6328,
+    "max_fee_per_gas_gwei": 0.5345,
+    "max_priority_fee_per_gas_gwei": 0.5445,
+    "calldata_size_bytes": 0.56,
+    "is_contract_call": 0.56,
+    "is_contract_creation": 0.5,
+    "function_selector_hash": 0.56,
+    "tx_type": 0.53,
+    "sender_historical_tx_count": 0.5012,
+    "receiver_historical_tx_count": 0.5588,
+    "sender_receiver_tx_count": 0.7585,
+    "sender_receiver_existing_relationship": 0.5497,
+    "sender_historical_avg_value_eth": 0.5443,
+    "sender_historical_avg_gas_limit": 0.538,
+    "window_tx_count_60s": 0.5004,
+    "window_tx_count_10s": 0.779,
+    "window_unique_receivers_60s": 0.5256,
+    "is_burst_activity": 0.5178,
+    "is_fan_out": 0.5111,
+    "is_repeated_transfer": 0.5867,
+    "window_gas_price_mean_gwei": 0.7657,
+    "gas_price_to_window_ratio": 0.6559,
+    "sender_out_degree": 0.5256,
+    "receiver_in_degree": 0.5273,
+    "sender_pagerank": 0.6724,
+    "receiver_pagerank": 0.6342
+  },
+  "evaluation_v2": {
+    "RuleBaseline": {
+      "model_name": "RuleBasedBaseline",
+      "split_name": "test_v2",
+      "sample_count": 135,
+      "class_distribution": {
+        "0": 60,
+        "1": 75
+      },
+      "support": {
+        "class_0_benign": 60,
+        "class_1_anomaly": 75
+      },
+      "accuracy": 0.45185185185185184,
+      "precision": 0.5041322314049587,
+      "recall": 0.8133333333333334,
+      "f1_score": 0.6224489795918368,
+      "pr_auc": 0.605940920872918,
+      "roc_auc": 0.44,
+      "false_positive_rate": 1.0,
+      "false_negative_rate": 0.18666666666666668,
+      "confusion_matrix": [
+        [
+          0,
+          60
+        ],
+        [
+          14,
+          61
+        ]
+      ],
+      "inference_latency_ms": 0.49475444444666483,
+      "single_class_warning": null,
+      "notes": [],
+      "confidence_intervals": {
+        "accuracy": {
+          "mean": 0.4548,
+          "median": 0.4556,
+          "ci_lower": 0.3704,
+          "ci_upper": 0.5333
+        },
+        "precision": {
+          "mean": 0.507,
+          "median": 0.5043,
+          "ci_lower": 0.4173,
+          "ci_upper": 0.595
+        },
+        "recall": {
+          "mean": 0.8159,
+          "median": 0.8182,
+          "ci_lower": 0.7222,
+          "ci_upper": 0.9
+        },
+        "f1_score": {
+          "mean": 0.6241,
+          "median": 0.6259,
+          "ci_lower": 0.5405,
+          "ci_upper": 0.6957
+        },
+        "pr_auc": {
+          "mean": 0.6073,
+          "median": 0.6078,
+          "ci_lower": 0.5151,
+          "ci_upper": 0.6882
+        },
+        "roc_auc": {
+          "mean": 0.4392,
+          "median": 0.4392,
+          "ci_lower": 0.356,
+          "ci_upper": 0.5256
+        }
+      },
+      "single_feature_separability": null
+    },
+    "LogisticRegression": {
+      "model_name": "LogisticRegression",
+      "split_name": "test_v2",
+      "sample_count": 135,
+      "class_distribution": {
+        "0": 60,
+        "1": 75
+      },
+      "support": {
+        "class_0_benign": 60,
+        "class_1_anomaly": 75
+      },
+      "accuracy": 0.9185185185185185,
+      "precision": 1.0,
+      "recall": 0.8533333333333334,
+      "f1_score": 0.920863309352518,
+      "pr_auc": 0.9804240123974408,
+      "roc_auc": 0.9657777777777778,
+      "false_positive_rate": 0.0,
+      "false_negative_rate": 0.14666666666666667,
+      "confusion_matrix": [
+        [
+          60,
+          0
+        ],
+        [
+          11,
+          64
+        ]
+      ],
+      "inference_latency_ms": 0.017705185183769102,
+      "single_class_warning": null,
+      "notes": [],
+      "confidence_intervals": {
+        "accuracy": {
+          "mean": 0.9182,
+          "median": 0.9185,
+          "ci_lower": 0.8667,
+          "ci_upper": 0.963
+        },
+        "precision": {
+          "mean": 1.0,
+          "median": 1.0,
+          "ci_lower": 1.0,
+          "ci_upper": 1.0
+        },
+        "recall": {
+          "mean": 0.8533,
+          "median": 0.8553,
+          "ci_lower": 0.7683,
+          "ci_upper": 0.9296
+        },
+        "f1_score": {
+          "mean": 0.9203,
+          "median": 0.922,
+          "ci_lower": 0.869,
+          "ci_upper": 0.9635
+        },
+        "pr_auc": {
+          "mean": 0.9809,
+          "median": 0.982,
+          "ci_lower": 0.9609,
+          "ci_upper": 0.9954
+        },
+        "roc_auc": {
+          "mean": 0.9667,
+          "median": 0.9686,
+          "ci_lower": 0.9306,
+          "ci_upper": 0.9926
+        }
+      },
+      "single_feature_separability": null
+    },
+    "XGBoost": {
+      "model_name": "XGBoostClassifier",
+      "split_name": "test_v2",
+      "sample_count": 135,
+      "class_distribution": {
+        "0": 60,
+        "1": 75
+      },
+      "support": {
+        "class_0_benign": 60,
+        "class_1_anomaly": 75
+      },
+      "accuracy": 0.9777777777777777,
+      "precision": 1.0,
+      "recall": 0.96,
+      "f1_score": 0.9795918367346939,
+      "pr_auc": 0.9919552289815446,
+      "roc_auc": 0.9862222222222222,
+      "false_positive_rate": 0.0,
+      "false_negative_rate": 0.04,
+      "confusion_matrix": [
+        [
+          60,
+          0
+        ],
+        [
+          3,
+          72
+        ]
+      ],
+      "inference_latency_ms": 0.023062592592598068,
+      "single_class_warning": null,
+      "notes": [],
+      "confidence_intervals": {
+        "accuracy": {
+          "mean": 0.9776,
+          "median": 0.9778,
+          "ci_lower": 0.9481,
+          "ci_upper": 1.0
+        },
+        "precision": {
+          "mean": 1.0,
+          "median": 1.0,
+          "ci_lower": 1.0,
+          "ci_upper": 1.0
+        },
+        "recall": {
+          "mean": 0.9597,
+          "median": 0.9615,
+          "ci_lower": 0.9091,
+          "ci_upper": 1.0
+        },
+        "f1_score": {
+          "mean": 0.9793,
+          "median": 0.9804,
+          "ci_lower": 0.9524,
+          "ci_upper": 1.0
+        },
+        "pr_auc": {
+          "mean": 0.9918,
+          "median": 0.9927,
+          "ci_lower": 0.9788,
+          "ci_upper": 1.0
+        },
+        "roc_auc": {
+          "mean": 0.9859,
+          "median": 0.9874,
+          "ci_lower": 0.9634,
+          "ci_upper": 1.0
+        }
+      },
+      "single_feature_separability": null
+    }
+  },
+  "label_leakage_audit": {
+    "scenarios_audited": 8,
+    "direct_dependency_count": 8,
+    "scenario_dependencies": [
+      {
+        "scenario_id": "BENIGN_TRANSFER",
+        "expected_label": 0,
+        "generator_behavior": "Dispatches baseline ETH value transfers with standard network base fee.",
+        "correlated_features": [
+          "gas_price_to_window_ratio",
+          "is_burst_activity",
+          "is_fan_out",
+          "is_contract_call"
+        ],
+        "leakage_risk_level": "HIGH",
+        "explanation": "Benign transfers exhibit near-unity gas ratios (approx 1.0), zero burst indicators, and zero calldata. Models easily classify these by the absence of anomaly flags."
+      },
+      {
+        "scenario_id": "REPEATED_TRANSFER",
+        "expected_label": 1,
+        "generator_behavior": "Sends rapid consecutive transfers between identical sender & receiver accounts.",
+        "correlated_features": [
+          "is_repeated_transfer",
+          "sender_receiver_tx_count",
+          "sender_receiver_existing_relationship"
+        ],
+        "leakage_risk_level": "HIGH",
+        "explanation": "Generator behavior directly increments sender_receiver_tx_count and trips is_repeated_transfer. The feature engine was specifically designed to capture this pattern."
+      },
+      {
+        "scenario_id": "GAS_SPIKE",
+        "expected_label": 1,
+        "generator_behavior": "Sets gas price to 25x the target block base fee simulating aggressive front-running.",
+        "correlated_features": [
+          "gas_price_gwei",
+          "gas_price_to_window_ratio",
+          "max_fee_per_gas_gwei"
+        ],
+        "leakage_risk_level": "HIGH",
+        "explanation": "The label is assigned based on fee inflation, which directly maps to gas_price_gwei. Trained models learn a clean threshold partition on this feature."
+      },
+      {
+        "scenario_id": "GAS_DEVIATION_LOW",
+        "expected_label": 1,
+        "generator_behavior": "Dispatches transactions with sub-base or zero priority fee.",
+        "correlated_features": [
+          "gas_price_gwei",
+          "gas_price_to_window_ratio"
+        ],
+        "leakage_risk_level": "MEDIUM",
+        "explanation": "Sub-base fee transactions manifest directly as gas_price_gwei < 1.0. The classifier easily separates this distinct lower bound."
+      },
+      {
+        "scenario_id": "BURST_ACTIVITY",
+        "expected_label": 1,
+        "generator_behavior": "Submits 6 transactions within seconds from a single account.",
+        "correlated_features": [
+          "window_tx_count_10s",
+          "window_tx_count_60s",
+          "is_burst_activity"
+        ],
+        "leakage_risk_level": "HIGH",
+        "explanation": "Window counting features directly reflect the generator's rapid submission frequency. Models can trivially classify bursts using window_tx_count_10s >= 3."
+      },
+      {
+        "scenario_id": "FAN_OUT",
+        "expected_label": 1,
+        "generator_behavior": "Dispatches transfers to 5 distinct destination addresses within 60s.",
+        "correlated_features": [
+          "window_unique_receivers_60s",
+          "is_fan_out",
+          "sender_out_degree"
+        ],
+        "leakage_risk_level": "HIGH",
+        "explanation": "The scenario definition matches the formula for window_unique_receivers_60s. A strong direct correlation exists between the generator loop and graph out-degree."
+      },
+      {
+        "scenario_id": "REPEATED_INTERACTIONS",
+        "expected_label": 1,
+        "generator_behavior": "Cyclic interaction alternating transfers between sender and receiver.",
+        "correlated_features": [
+          "sender_receiver_tx_count",
+          "sender_receiver_existing_relationship"
+        ],
+        "leakage_risk_level": "MEDIUM",
+        "explanation": "Historical pair interactions are recorded directly by the database history query, creating a strong feature signal."
+      },
+      {
+        "scenario_id": "CONTRACT_CALL",
+        "expected_label": 1,
+        "generator_behavior": "Attaches non-empty contract bytecode/calldata payload.",
+        "correlated_features": [
+          "is_contract_call",
+          "calldata_size_bytes",
+          "function_selector_hash"
+        ],
+        "leakage_risk_level": "HIGH",
+        "explanation": "Because benign transactions in this PoC have calldata_size_bytes == 0, any transaction with is_contract_call == 1 is easily separated by models."
+      }
+    ],
+    "summary_findings": "Audit confirms that 8 out of 8 synthetic scenarios define their ground-truth labels using behavioral attributes that directly map to one or more canonical features in the pre-confirmation feature space.",
+    "benchmark_limitation_statement": "CRITICAL BENCHMARK LIMITATION: In this synthetic proof-of-concept environment, the machine learning models and heuristic rules are effectively learning the parameter boundaries established by the synthetic transaction generator (e.g. gas multiplier thresholds, burst frequencies, calldata presence). High precision and recall scores on this local dataset reflect effective detection of these specific synthetic archetypes, but DO NOT provide evidence of real-world fraud detection efficacy on live public mainnets where adversarial strategies are obfuscated, multi-hop, and dynamically priced."
+  },
+  "persisted_artifacts": {
+    "RuleBaseline": {
+      "metadata": "models\\saved\\v2\\rulebaseline_metadata.json"
+    },
+    "LogisticRegression": {
+      "model": "models\\saved\\v2\\logisticregression.joblib",
+      "metadata": "models\\saved\\v2\\logisticregression_metadata.json"
+    },
+    "XGBoost": {
+      "model": "models\\saved\\v2\\xgboost.joblib",
+      "metadata": "models\\saved\\v2\\xgboost_metadata.json"
+    }
+  }
+}

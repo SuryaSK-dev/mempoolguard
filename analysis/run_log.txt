@@ -1,0 +1,498 @@
+================================================================================
+MEMPOOLGUARD RUN LOG - PHASE 3 & PHASE 4 EXECUTION
+Initialized: 2026-10-02 20:56:45 IST
+================================================================================
+
+[2026-10-02 20:57:09 IST] COMMAND:
+& "C:\Program Files\Git\bin\bash.exe" -c "curl -L https://foundry.paradigm.xyz | bash"
+OUTPUT:
+foundryup-init: installing latest foundryup
+foundryup-init: downloading attestation...
+foundryup-init: verifying attestation...
+foundryup-init: downloading foundryup...
+foundryup-init: verifying binary integrity...
+foundryup-init: binary verified ✓
+foundryup-init: installing foundryup to /c/Users/USER/.foundry/bin...
+foundryup-init: foundryup was installed successfully!
+
+--------------------------------------------------------------------------------
+[2026-10-02 20:57:37 IST] COMMAND:
+& "C:\Program Files\Git\bin\bash.exe" -c "~/.foundry/bin/foundryup"
+OUTPUT:
+foundryup: fetching latest release tag from foundry-rs/foundry...
+foundryup: resolved release tag: v1.8.4
+foundryup: installing foundry (version v1.8.4, tag v1.8.4)
+foundryup: downloading foundry_v1.8.4_win32_amd64.zip
+foundryup: forge verified ✓
+foundryup: cast verified ✓
+foundryup: anvil verified ✓
+foundryup: chisel verified ✓
+foundryup: solar verified ✓
+foundryup: done!
+
+--------------------------------------------------------------------------------
+[2026-10-02 20:59:28 IST] COMMAND:
+& "$HOME\.foundry\bin\anvil.exe" --version
+OUTPUT:
+anvil Version: 1.8.4
+Commit SHA: 50af4efe189dc64bad2b75ed6990b835de66c4ae
+Build Timestamp: 2026-10-01T13:50:42.600348400Z (1790862642)
+Build Profile: dist
+
+--------------------------------------------------------------------------------
+[2026-10-02 21:01:30 IST] COMMAND:
+python -m venv c:\Users\USER\Downloads\PD-PROJECT\.venv
+OUTPUT:
+Exit Code: 0 (Isolated virtual environment created)
+
+--------------------------------------------------------------------------------
+[2026-10-02 21:07:03 IST] COMMAND:
+& "c:\Users\USER\Downloads\PD-PROJECT\.venv\Scripts\python.exe" -m pip install --default-timeout=120 -r miniproject/requirements.txt
+OUTPUT:
+Successfully installed MarkupSafe-3.0.3 aiohappyeyeballs-2.7.1 aiohttp-3.14.3 aiosignal-1.4.0 altair-6.3.0 annotated-doc-0.0.5 annotated-types-0.8.0 anyio-4.15.1 attrs-26.1.0 bitarray-3.11.0 certifi-2026.7.22 charset_normalizer-3.5.2 ckzg-2.1.8 click-8.5.0 cloudpickle-3.1.2 colorama-0.4.6 cytoolz-1.1.0 eth-abi-6.0.0 eth-account-0.14.0 eth-hash-0.8.0 eth-keyfile-0.10.0 eth-keys-0.8.0 eth-rlp-3.0.0 eth-typing-6.0.0 eth-utils-6.0.0 fastapi-0.142.2 frozenlist-1.8.0 h11-0.16.0 hexbytes-2.0.0 httptools-0.8.0 idna-3.20 iniconfig-2.3.0 itsdangerous-2.2.0 jinja2-3.1.6 joblib-1.6.0 jsonschema-4.26.0 jsonschema-specifications-2025.9.1 multidict-6.9.1 narwhals-2.26.0 networkx-3.6.1 numpy-2.4.6 opentelemetry-api-1.45.0 packaging-26.3 pandas-3.0.6 parsimonious-0.10.0 pillow-12.3.0 plotly-7.1.0 pluggy-1.6.0 propcache-0.5.4 protobuf-7.36.2 py_ecc-8.0.0 pyarrow-25.0.1 pycryptodome-3.23.0 pydantic-2.13.5 pydantic-core-2.46.5 pydeck-0.9.3 pygments-2.21.0 pytest-9.1.1 pytest-asyncio-1.4.0 python-dateutil-2.9.0.post0 python-dotenv-1.2.4 python-multipart-0.0.32 pyunormalize-18.0.0 pywin32-312 pyyaml-6.0.3 referencing-0.37.0 regex-2026.9.29 requests-2.34.2 rlp-5.0.0 rpds-py-2026.6.3 ruff-0.16.10 scikit-learn-1.9.1 scipy-1.17.1 six-1.17.0 starlette-1.7.0 streamlit-1.64.0 threadpoolctl-3.7.0 toml-0.10.2 toolz-1.1.0 typing-extensions-4.16.0 typing-inspection-0.4.4 tzdata-2026.4 urllib3-2.8.0 uvicorn-0.54.0 watchdog-6.0.0 web3-8.0.0 websockets-16.1.1 xgboost-3.2.0 yarl-1.25.1
+
+--------------------------------------------------------------------------------
+[2026-10-02 21:16:08 IST] COMMAND:
+& "C:\Users\USER\.foundry\bin\anvil.exe" --host 127.0.0.1 --port 8545 --chain-id 31337 (Background Daemon)
+OUTPUT:
+Chain ID: 31337
+Listening on 127.0.0.1:8545
+Task ID: 8f97d83d-a20a-4b9b-852b-3a98b6d6c9b9/task-172 (RUNNING)
+
+--------------------------------------------------------------------------------
+[2026-10-02 21:16:24 IST] COMMAND:
+& "c:\Users\USER\Downloads\PD-PROJECT\.venv\Scripts\python.exe" -m core.health
+OUTPUT:
+{
+  "overall_status": "HEALTHY",
+  "python": {
+    "status": "HEALTHY",
+    "python_version": "3.11.9",
+    "platform": "win32",
+    "is_supported": true
+  },
+  "database": {
+    "status": "HEALTHY",
+    "database_path": "data/mempoolguard.db",
+    "table_counts": {
+      "raw_transactions": 140,
+      "decoded_transactions": 54,
+      "feature_vectors": 58,
+      "model_predictions": 79,
+      "decisions": 1077,
+      "audit_records": 1077
+    }
+  },
+  "blockchain_rpc": {
+    "status": "HEALTHY",
+    "rpc_url": "http://127.0.0.1:8545",
+    "connected": true,
+    "client_version": "anvil/v1.8.4"
+  },
+  "storage": {
+    "status": "HEALTHY",
+    "directories": {
+      "data\\raw": "writable",
+      "data\\processed": "writable",
+      "artifacts\\models": "writable"
+    }
+  }
+}
+
+--------------------------------------------------------------------------------
+[2026-10-02 21:17:03 IST] COMMAND:
+& "c:\Users\USER\Downloads\PD-PROJECT\.venv\Scripts\python.exe" -m pytest tests/ -v
+OUTPUT:
+collecting ... collected 83 items / 4 errors
+
+=================================== ERRORS ====================================
+_____________________ ERROR collecting tests/test_api.py ______________________
+RuntimeError: The starlette.testclient module requires the httpx2 package to be installed.
+You can install this with:
+    $ pip install httpx2
+__________________ ERROR collecting tests/test_dashboard.py ___________________
+dashboard\api_client.py:8: in <module>
+    import httpx
+E   ModuleNotFoundError: No module named 'httpx'
+________________ ERROR collecting tests/test_m11_validation.py ________________
+benchmark\runner.py:31: in <module>
+    import httpx
+E   ModuleNotFoundError: No module named 'httpx'
+_______________ ERROR collecting tests/test_m12_integration.py ________________
+RuntimeError: The starlette.testclient module requires the httpx2 package to be installed.
+You can install this with:
+    $ pip install httpx2
+=========================== short test summary info ===========================
+ERROR tests/test_api.py - RuntimeError: The starlette.testclient module requires the httpx2 package to be installed.
+ERROR tests/test_dashboard.py - ModuleNotFoundError: No module named 'httpx'
+ERROR tests/test_m11_validation.py - ModuleNotFoundError: No module named 'httpx'
+ERROR tests/test_m12_integration.py - RuntimeError: The starlette.testclient module requires the httpx2 package to be installed.
+!!!!!!!!!!!!!!!!!!! Interrupted: 4 errors during collection !!!!!!!!!!!!!!!!!!!
+============================= 4 errors in 33.21s ==============================
+
+--------------------------------------------------------------------------------
+[2026-10-03 06:21:59 IST] COMMAND:
+& "c:\Users\USER\Downloads\PD-PROJECT\.venv\Scripts\python.exe" -m pip install httpx
+OUTPUT:
+Collecting httpx
+  Using cached httpx-0.28.1-py3-none-any.whl.metadata (7.1 kB)
+Collecting httpcore==1.* (from httpx)
+  Using cached httpcore-1.0.9-py3-none-any.whl.metadata (21 kB)
+Installing collected packages: httpcore, httpx
+Successfully installed httpcore-1.0.9 httpx-0.28.1
+
+--------------------------------------------------------------------------------
+[2026-10-03 06:22:46 IST] COMMAND:
+& "c:\Users\USER\Downloads\PD-PROJECT\.venv\Scripts\python.exe" -c "from starlette.testclient import TestClient; import httpx; print(httpx.__version__)"
+OUTPUT:
+<string>:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+0.28.1
+Exit Code: 0 (TestClient and httpx successfully verified)
+
+--------------------------------------------------------------------------------
+[2026-10-03 06:23:07 IST] COMMAND:
+& "C:\Users\USER\.foundry\bin\anvil.exe" --host 127.0.0.1 --port 8545 --chain-id 31337 (Restarted background daemon post-system restart)
+OUTPUT:
+Chain ID: 31337
+Listening on 127.0.0.1:8545
+Task ID: 8f97d83d-a20a-4b9b-852b-3a98b6d6c9b9/task-203 (RUNNING)
+
+--------------------------------------------------------------------------------
+[2026-10-03 06:23:23 IST] COMMAND:
+& "c:\Users\USER\Downloads\PD-PROJECT\.venv\Scripts\python.exe" -m core.health
+OUTPUT:
+{
+  "overall_status": "HEALTHY",
+  "blockchain_rpc": {
+    "status": "HEALTHY",
+    "rpc_url": "http://127.0.0.1:8545",
+    "connected": true,
+    "client_version": "anvil/v1.8.4"
+  }
+}
+
+--------------------------------------------------------------------------------
+[2026-10-03 06:23:41 IST] COMMAND:
+& "c:\Users\USER\Downloads\PD-PROJECT\.venv\Scripts\python.exe" -m pytest tests/ -v
+OUTPUT:
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.6.0 -- C:\Users\USER\Downloads\PD-PROJECT\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\USER\Downloads\PD-PROJECT\miniproject
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collected 110 items
+
+tests/test_api.py::test_api_openapi_and_docs PASSED                      [  0%]
+tests/test_api.py::test_api_health_endpoint PASSED                       [  1%]
+tests/test_api.py::test_api_predict_with_valid_transaction PASSED        [  2%]
+tests/test_api.py::test_api_predict_with_feature_dict PASSED             [  3%]
+tests/test_api.py::test_api_predict_logistic_and_baseline PASSED        [  4%]
+tests/test_api.py::test_api_decision_pipeline PASSED                     [  5%]
+tests/test_api.py::test_api_decision_simulate PASSED                     [  6%]
+tests/test_api.py::test_api_decision_idempotency PASSED                  [  7%]
+tests/test_api.py::test_api_audit_lookup_and_not_found PASSED            [  8%]
+tests/test_api.py::test_api_request_validation_errors PASSED            [  9%]
+tests/test_api.py::test_api_health_degraded_when_rpc_offline PASSED     [ 10%]
+tests/test_api.py::test_api_predict_latency_under_50ms PASSED            [ 10%]
+tests/test_config.py::test_default_config_loading PASSED                 [ 11%]
+tests/test_config.py::test_environment_variable_overrides PASSED         [ 12%]
+tests/test_config.py::test_invalid_threshold_configuration PASSED        [ 13%]
+tests/test_config.py::test_invalid_rpc_url_scheme PASSED                 [ 14%]
+tests/test_config.py::test_invalid_log_level PASSED                      [ 15%]
+tests/test_contracts.py::test_transaction_contract_valid PASSED          [ 16%]
+tests/test_contracts.py::test_transaction_contract_invalid_hash PASSED   [ 17%]
+tests/test_contracts.py::test_transaction_contract_invalid_sender PASSED [ 18%]
+tests/test_contracts.py::test_feature_vector_contract PASSED             [ 19%]
+tests/test_contracts.py::test_risk_result_contract PASSED               [ 20%]
+tests/test_contracts.py::test_decision_contract_and_simulation_flag PASSED [ 20%]
+tests/test_contracts.py::test_audit_record_contract PASSED              [ 21%]
+tests/test_dashboard.py::test_data_loader_empty_database PASSED          [ 22%]
+tests/test_dashboard.py::test_data_loader_with_synthetic_records PASSED  [ 23%]
+tests/test_dashboard.py::test_data_loader_kpis_and_distributions PASSED  [ 24%]
+tests/test_dashboard.py::test_api_client_health_check PASSED            [ 25%]
+tests/test_dashboard.py::test_api_client_prediction_and_decision PASSED  [ 26%]
+tests/test_dashboard.py::test_api_client_audit_lookup PASSED             [ 27%]
+tests/test_database.py::test_database_initialization_and_tables PASSED   [ 28%]
+tests/test_database.py::test_raw_transaction_insert_and_deduplication PASSED [ 29%]
+tests/test_database.py::test_decoded_transaction_storage PASSED         [ 30%]
+tests/test_database.py::test_feature_vector_storage PASSED              [ 30%]
+tests/test_database.py::test_risk_result_storage PASSED                  [ 30%]
+tests/test_database.py::test_decision_storage PASSED                     [ 30%]
+tests/test_database.py::test_audit_trail_and_pagination PASSED           [ 31%]
+tests/test_database.py::test_transaction_rollback_on_error PASSED        [ 32%]
+tests/test_dataset.py::test_schema_column_isolation PASSED               [ 33%]
+tests/test_dataset.py::test_deterministic_dataset_generation PASSED      [ 34%]
+tests/test_dataset.py::test_feature_label_separation PASSED              [ 35%]
+tests/test_dataset.py::test_temporal_anti_leakage_and_future_independence PASSED [ 36%]
+tests/test_dataset.py::test_quality_checker_duplicates PASSED            [ 37%]
+tests/test_dataset.py::test_quality_checker_missing_and_invalid PASSED   [ 38%]
+tests/test_dataset.py::test_quality_checker_full_report PASSED           [ 39%]
+tests/test_dataset.py::test_dataset_time_based_split_zero_leakage PASSED [ 40%]
+tests/test_dataset.py::test_dataset_stratified_split_reproducibility PASSED [ 40%]
+tests/test_dataset.py::test_dataset_export_parquet_and_csv PASSED        [ 41%]
+tests/test_decision.py::test_policy_engine_exact_boundary_semantics PASSED [ 42%]
+tests/test_decision.py::test_policy_engine_invalid_score_rejection PASSED [ 43%]
+tests/test_decision.py::test_truthful_reason_code_generation PASSED      [ 44%]
+tests/test_decision.py::test_decision_engine_decide_score_and_persistence PASSED [ 45%]
+tests/test_decision.py::test_decision_engine_safe_model_failure PASSED   [ 46%]
+tests/test_decision.py::test_decision_engine_invalid_score_fallback PASSED [ 47%]
+tests/test_decision.py::test_decision_engine_idempotency PASSED          [ 48%]
+tests/test_decision.py::test_decision_engine_with_real_m6_models PASSED  [ 49%]
+tests/test_features.py::test_feature_names_and_ordering PASSED           [ 50%]
+tests/test_features.py::test_transaction_level_feature_extraction PASSED [ 50%]
+tests/test_features.py::test_historical_address_features PASSED          [ 51%]
+tests/test_features.py::test_sliding_window_burst_and_repeated_transfers PASSED [ 52%]
+tests/test_features.py::test_fan_out_detection PASSED                    [ 53%]
+tests/test_features.py::test_graph_derived_features PASSED               [ 54%]
+tests/test_features.py::test_missing_and_contract_creation_handling PASSED [ 55%]
+tests/test_features.py::test_feature_persistence_and_retrieval PASSED    [ 56%]
+tests/test_features.py::test_determinism_and_reproducibility PASSED      [ 57%]
+tests/test_features.py::test_strict_temporal_anti_leakage PASSED         [ 58%]
+tests/test_generator.py::test_anvil_connectivity PASSED (Live Anvil Node) [ 59%]
+tests/test_generator.py::test_anvil_local_accounts PASSED (Live Anvil Node) [ 60%]
+tests/test_generator.py::test_pending_transaction_lifecycle PASSED (Live Anvil Node) [ 60%]
+tests/test_generator.py::test_benign_transfer_generation PASSED (Live Anvil Node) [ 61%]
+tests/test_generator.py::test_gas_spike_generation PASSED (Live Anvil Node) [ 62%]
+tests/test_generator.py::test_burst_activity_generation PASSED (Live Anvil Node) [ 63%]
+tests/test_generator.py::test_fan_out_generation PASSED (Live Anvil Node) [ 64%]
+tests/test_generator.py::test_repeated_transfers_generation PASSED (Live Anvil Node) [ 65%]
+tests/test_generator.py::test_contract_call_generation PASSED (Live Anvil Node) [ 66%]
+tests/test_generator.py::test_run_all_scenarios_and_manifest PASSED (Live Anvil Node) [ 67%]
+tests/test_health.py::test_python_environment_check PASSED               [ 68%]
+tests/test_health.py::test_database_health_check PASSED                  [ 69%]
+tests/test_health.py::test_rpc_node_check_offline PASSED                 [ 70%]
+tests/test_health.py::test_storage_directories_check PASSED              [ 70%]
+tests/test_health.py::test_run_all_health_checks PASSED                  [ 71%]
+tests/test_listener.py::test_listener_lifecycle PASSED (Live Anvil Node) [ 72%]
+tests/test_listener.py::test_serialize_raw_transaction PASSED (Live Anvil Node) [ 73%]
+tests/test_listener.py::test_deduplication_handling PASSED (Live Anvil Node) [ 74%]
+tests/test_listener.py::test_missing_and_malformed_transactions PASSED (Live Anvil Node) [ 75%]
+tests/test_listener.py::test_on_transaction_captured_callback PASSED (Live Anvil Node) [ 76%]
+tests/test_listener.py::test_end_to_end_pending_transaction_experiment PASSED (Live Anvil Node) [ 77%]
+tests/test_m10_ablation.py::test_feature_partition_completeness_and_uniqueness PASSED [ 78%]
+tests/test_m10_ablation.py::test_ablation_configurations_leave_one_group_out PASSED [ 79%]
+tests/test_m10_ablation.py::test_train_only_preprocessing_leak_prevention PASSED [ 80%]
+tests/test_m10_ablation.py::test_deterministic_reproducibility_seed PASSED [ 80%]
+tests/test_m10_ablation.py::test_single_class_metric_representation PASSED [ 81%]
+tests/test_m10_ablation.py::test_ablation_runner_and_report_artifacts PASSED [ 82%]
+tests/test_m11_validation.py::test_high_resolution_timer_statistics_and_percentiles PASSED [ 83%]
+tests/test_m11_validation.py::test_timing_sample_size_edge_cases PASSED  [ 84%]
+tests/test_m11_validation.py::test_end_to_end_trace_structure_and_continuity PASSED [ 85%]
+tests/test_m11_validation.py::test_component_latency_measurement_integrity PASSED [ 86%]
+tests/test_m11_validation.py::test_idempotency_verification_logic PASSED [ 87%]
+tests/test_m11_validation.py::test_error_and_fallback_resilience PASSED  [ 88%]
+tests/test_m11_validation.py::test_report_generation_and_schema PASSED   [ 89%]
+tests/test_m12_integration.py::test_system_prerequisites_and_component_availability PASSED (Live Anvil Node) [ 90%]
+tests/test_m12_integration.py::test_artifact_preservation_m5_m6_m10_m11 PASSED [ 90%]
+tests/test_m12_integration.py::test_end_to_end_trace_schema_completeness PASSED (Live Anvil Node) [ 91%]
+tests/test_m12_integration.py::test_api_and_dashboard_integration_contracts PASSED (Live Anvil Node) [ 92%]
+tests/test_m12_integration.py::test_final_report_generation_and_schema PASSED (Live Anvil Node) [ 93%]
+tests/test_models.py::test_rule_baseline_deterministic_scoring PASSED    [ 94%]
+tests/test_models.py::test_logistic_regression_fit_and_predict PASSED    [ 95%]
+tests/test_models.py::test_xgboost_fit_and_predict PASSED                [ 96%]
+tests/test_models.py::test_model_persistence_and_schema_validation PASSED [ 97%]
+tests/test_models.py::test_model_evaluator_multiclass PASSED             [ 98%]
+tests/test_models.py::test_model_evaluator_single_class_integrity PASSED [ 99%]
+tests/test_models.py::test_label_leakage_audit PASSED                    [100%]
+
+================= 110 passed, 4 warnings in 97.40s (0:01:37) ==================
+
+--------------------------------------------------------------------------------
+[2026-10-03 06:43:28 IST] COMMAND:
+& "c:\Users\USER\Downloads\PD-PROJECT\.venv\Scripts\python.exe" -c "from web3 import Web3; from core.database import Database; w3 = Web3(Web3.HTTPProvider('http://127.0.0.1:8545')); res = w3.provider.make_request('evm_setAutomine', [False]); print('automine set False:', res); db = Database('data/trace_mempoolguard.db'); db.init_schema(); print('trace db initialized:', db.get_summary_counts())"
+OUTPUT:
+automine set False: {'jsonrpc': '2.0', 'id': 0, 'result': None}
+trace db initialized: {'raw_transactions': 0, 'decoded_transactions': 0, 'feature_vectors': 0, 'model_predictions': 0, 'decisions': 0, 'audit_records': 0}
+
+--------------------------------------------------------------------------------
+[2026-10-03 06:43:42 IST] COMMAND:
+$env:MEMPOOLGUARD_SQLITE_PATH="data/trace_mempoolguard.db"; & "c:\Users\USER\Downloads\PD-PROJECT\.venv\Scripts\python.exe" -m collector.transaction_generator --rpc http://127.0.0.1:8545 --manifest data/raw/trace_synthetic_scenarios.json
+OUTPUT:
+Connecting to Anvil at http://127.0.0.1:8545 (Chain ID: 31337)...
+Loaded 10 test accounts. Running all 8 synthetic & benign scenarios...
+Execution Summary:
+  Scenarios executed : 8
+  Total transactions : 34
+  Confirmed on chain : 34
+  Manifest written to: data/raw/trace_synthetic_scenarios.json
+
+--------------------------------------------------------------------------------
+[2026-10-03 06:44:26 IST] COMMAND:
+$env:MEMPOOLGUARD_SQLITE_PATH="data/trace_mempoolguard.db"; & "c:\Users\USER\Downloads\PD-PROJECT\.venv\Scripts\python.exe" -m collector.mempool_listener --rpc http://127.0.0.1:8545 --db data/trace_mempoolguard.db --duration 3.0
+OUTPUT:
+Starting MempoolListener on http://127.0.0.1:8545 (Duration: 3.0s)...
+ [CAPTURED PENDING TX] Hash: 0x3aa68298b5ba2f... | First Seen: 2026-10-03T01:14:34.044009+00:00 | Block: None
+Listener Stopped. Metrics:
+{
+  "running": false,
+  "captured_count": 1,
+  "duplicate_count": 0,
+  "dropped_count": 0,
+  "error_count": 0,
+  "in_memory_seen_count": 1,
+  "last_poll_time": "2026-10-03T01:14:36.999100+00:00",
+  "uptime_seconds": 0.0
+}
+
+--------------------------------------------------------------------------------
+[2026-10-03 06:44:54 IST] COMMAND:
+$env:MEMPOOLGUARD_SQLITE_PATH="data/trace_mempoolguard.db"; & "c:\Users\USER\Downloads\PD-PROJECT\.venv\Scripts\python.exe" -m features.engine --hash 0x3aa68298b5ba2f08235d659fb8cb7fc3e036868f9d9f1292dc4adcb761cce41f --db data/trace_mempoolguard.db
+OUTPUT:
+Feature Extraction Result:
+  Tx Hash          : 0x3aa68298b5ba2f08235d659fb8cb7fc3e036868f9d9f1292dc4adcb761cce41f
+  Feature Version  : 1.0.0
+  Timestamp (UTC)  : 2026-10-03T01:14:34.044009+00:00
+  Feature Count    : 30
+  Missing Features : []
+  Availability Mask: {"transaction": true, "gas": true, "address_history": true, "temporal_window": true, "graph": true, "post_confirmation": false}
+
+--------------------------------------------------------------------------------
+[2026-10-03 06:45:10 IST] COMMAND:
+$env:MEMPOOLGUARD_SQLITE_PATH="data/trace_mempoolguard.db"; & "c:\Users\USER\Downloads\PD-PROJECT\.venv\Scripts\python.exe" -m uvicorn api.app:app --host 127.0.0.1 --port 8000 (Daemon)
+OUTPUT:
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000
+
+--------------------------------------------------------------------------------
+[2026-10-03 06:46:09 IST] COMMAND:
+$env:MEMPOOLGUARD_SQLITE_PATH="data/trace_mempoolguard.db"; & "c:\Users\USER\Downloads\PD-PROJECT\.venv\Scripts\python.exe" -m streamlit run dashboard/app.py --server.port 8501 --server.headless true (Daemon)
+OUTPUT:
+Task ID: 8f97d83d-a20a-4b9b-852b-3a98b6d6c9b9/task-279 (RUNNING, HTTP 200 Verified)
+
+--------------------------------------------------------------------------------
+[2026-10-03 06:46:23 IST] COMMAND:
+HTTP GET http://127.0.0.1:8000/health
+OUTPUT:
+HTTP 200 OK: {"status": "HEALTHY", "database": {"status": "HEALTHY", "database_path": "data/trace_mempoolguard.db"}, "models": {"primary_model": "xgboost", "loaded_count": 3}, "rpc": {"status": "HEALTHY", "connected": true}}
+
+--------------------------------------------------------------------------------
+[2026-10-03 06:46:53 IST] COMMAND:
+HTTP POST http://127.0.0.1:8000/predict
+OUTPUT:
+HTTP 200 OK: {"risk_score": 88.95318603515625, "predicted_class": 1, "model_name": "XGBoostClassifier", "reason_codes": ["HIGH_RISK_SCORE"]}
+
+--------------------------------------------------------------------------------
+[2026-10-03 06:46:55 IST] COMMAND:
+HTTP POST http://127.0.0.1:8000/decision
+OUTPUT:
+HTTP 200 OK: {"decision": "HOLD", "risk_score": 88.95318603515625, "audit_id": "62d49bf8-191b-4f13-a683-5978430e8fc0", "is_simulated": true}
+
+--------------------------------------------------------------------------------
+[2026-10-03 06:46:58 IST] COMMAND:
+HTTP GET http://127.0.0.1:8000/audit/0x3aa68298b5ba2f08235d659fb8cb7fc3e036868f9d9f1292dc4adcb761cce41f
+OUTPUT:
+HTTP 200 OK: {"decisions": [{"decision": "HOLD", "reason_codes": ["HIGH_RISK_SCORE"]}], "audit_records": [{"audit_id": "62d49bf8-191b-4f13-a683-5978430e8fc0", "event_type": "DECISION_ISSUED"}]}
+
+--------------------------------------------------------------------------------
+[2026-10-03 06:48:11 IST] COMMAND:
+w3.provider.make_request('evm_mine', []); w3.eth.get_transaction_receipt('0x3aa68298b5ba2f08235d659fb8cb7fc3e036868f9d9f1292dc4adcb761cce41f')
+OUTPUT:
+Block Number : 25
+Block Hash   : 0x9ffa219d60070d06b90ba07712c47e5403e4645fcbd81faa468257113e672689
+Gas Used     : 21000
+Status       : SUCCESS
+
+--------------------------------------------------------------------------------
+[2026-10-03 06:48:28 IST] COMMAND:
+w3.provider.make_request('evm_setAutomine', [True])
+OUTPUT:
+--------------------------------------------------------------------------------
+[2026-10-03 06:59:08 IST] COMMAND:
+$env:MEMPOOLGUARD_SQLITE_PATH="data/trace_mempoolguard.db"; & "c:\Users\USER\Downloads\PD-PROJECT\.venv\Scripts\python.exe" -m uvicorn api.app:app --host 127.0.0.1 --port 8000
+OUTPUT:
+Task ID: 8f97d83d-a20a-4b9b-852b-3a98b6d6c9b9/task-504 (RUNNING, Health 200 OK)
+
+--------------------------------------------------------------------------------
+[2026-10-03 06:59:40 IST] COMMAND:
+python scratch/execute_directive_3.py (Live multi-scenario trace for ALLOW, FLAG, HOLD)
+OUTPUT:
+--- [Step 1] Disabling automine on Anvil ---
+evm_setAutomine(False): {'jsonrpc': '2.0', 'id': 0, 'result': None}
+
+--- [Step 2] Generating Benign Transaction ---
+Dispatched Benign Tx: 0x19a2984e2104dff7d8daef871c455c6cded79490741e36bffa5ab2b3ca95f36f
+Tx1 blockNumber: None
+
+--- [Step 3] Capturing Tx1 via MempoolListener ---
+Listener metrics: {'running': False, 'captured_count': 5, 'duplicate_count': 0, 'dropped_count': 0, 'error_count': 0}
+Tx1 in raw_transactions: True
+
+--- [Step 4] Extracting Features for Tx1 ---
+Features extracted: count=30, version=1.0.0
+
+--- [Step 5] POST /predict for Tx1 (rule_baseline) ---
+Predict response: {
+  "tx_hash": "0x19a2984e2104dff7d8daef871c455c6cded79490741e36bffa5ab2b3ca95f36f",
+  "risk_score": 0.0,
+  "predicted_class": 0,
+  "model_name": "RuleBasedBaseline"
+}
+
+--- [Step 6] POST /decision for Tx1 (rule_baseline) ---
+Decision response: {
+  "decision": "ALLOW",
+  "risk_score": 0.0,
+  "reason_codes": ["LOW_RISK_SCORE", "REPEATED_INTERACTION_DETECTED"],
+  "audit_id": "d4cfd082-fa7d-4fb2-96af-d1fe1d847834"
+}
+
+--- [Step 7] Generating Gas Spike Transaction ---
+Dispatched Gas Spike Tx: 0x32262ebe335be335b342721a185ad2e20141c8df0b575bdcab88cc23ff5a6657
+Tx2 blockNumber: None
+
+--- [Step 8] Capturing Tx2 via MempoolListener ---
+Listener metrics: {'running': False, 'captured_count': 3, 'duplicate_count': 0, 'dropped_count': 0, 'error_count': 0}
+Tx2 in raw_transactions: True
+
+--- [Step 9] Extracting Features for Tx2 ---
+Features extracted: count=30, version=1.0.0
+
+--- [Step 10] POST /predict for Tx2 (rule_baseline) ---
+Predict response: {
+  "risk_score": 65.0,
+  "predicted_class": 1,
+  "model_name": "RuleBasedBaseline",
+  "reason_codes": ["GAS_SPIKE_DETECTED", "REPEATED_TRANSFER_DETECTED"]
+}
+
+--- [Step 11] POST /decision for Tx2 (rule_baseline) ---
+Decision response: {
+  "decision": "FLAG",
+  "risk_score": 65.0,
+  "reason_codes": ["MEDIUM_RISK_SCORE", "GAS_SPIKE_DETECTED", "REPEATED_TRANSFER_DETECTED"],
+  "audit_id": "a39e8c47-1748-4ae7-83c0-7aa52d8ff10a"
+}
+
+--- [Step 12] POST /decision for Tx2 (logistic_regression) ---
+Decision response: {
+  "decision": "HOLD",
+  "risk_score": 99.1438,
+  "reason_codes": ["HIGH_RISK_SCORE", "GAS_SPIKE_DETECTED", "REPEATED_TRANSFER_DETECTED"],
+  "audit_id": "7e2a2247-603d-444a-876b-dd87873f4a4b"
+}
+
+--- [Step 13] GET /audit for both transactions ---
+Audit for 0x19a2984e2104df...: 1 decisions, 1 audit records
+Audit for 0x32262ebe335be3...: 2 decisions, 2 audit records
+
+--- [Step 14] Mining blocks and re-enabling automine ---
+Confirmed receipts: Tx1 in block 27, Tx2 in block 27. Automine re-enabled.
+
+--- [Step 15] Per-table row counts in data/trace_mempoolguard.db ---
+  raw_transactions: 12
+  decoded_transactions: 5
+  feature_vectors: 7
+  model_predictions: 3
+  decisions: 4
+  audit_records: 4
+
+--------------------------------------------------------------------------------
+[2026-10-03 07:00:09 IST] COMMAND:
+$env:MEMPOOLGUARD_SQLITE_PATH="data/trace_mempoolguard.db"; & "c:\Users\USER\Downloads\PD-PROJECT\.venv\Scripts\python.exe" -m streamlit run dashboard/app.py --server.port 8501 --server.headless true
+OUTPUT:
+Task ID: 8f97d83d-a20a-4b9b-852b-3a98b6d6c9b9/task-514 (RUNNING, HTTP 200 OK)
+DataLoader verified: All 4 decision records (HOLD, FLAG, ALLOW, HOLD) queried from trace DB.
+
+
+

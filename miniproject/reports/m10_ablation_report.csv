@@ -1,0 +1,43 @@
+dataset,model,config_id,config_name,removed_group,removed_group_name,feature_count,accuracy,precision,recall,f1_score,pr_auc,roc_auc,false_positive_rate,fit_time_ms,inference_latency_ms,delta_precision,delta_recall,delta_f1,delta_pr_auc,delta_latency_ms
+M5_Primary_Chronological,RuleBaseline,full_30_features,Full Baseline,,None (Reference Baseline),30,0.0,0.0,0.0,0.0,,,,0.0,0.044,0.0,0.0,0.0,,0.0
+M5_Primary_Chronological,LogisticRegression,full_30_features,Full Baseline,,None (Reference Baseline),30,0.8333333333333334,1.0,0.8333333333333334,0.9090909090909091,,,,6.246,0.129,0.0,0.0,0.0,,0.0
+M5_Primary_Chronological,XGBoost,full_30_features,Full Baseline,,None (Reference Baseline),30,0.8333333333333334,1.0,0.8333333333333334,0.9090909090909091,,,,52.631,0.164,0.0,0.0,0.0,,0.0
+M5_Primary_Chronological,RuleBaseline,minus_G1_transaction_value,Minus G1 (Transaction Value & Core),G1,Transaction Value & Core,26,0.0,0.0,0.0,0.0,,,,0.0,0.059,0.0,0.0,0.0,,0.015
+M5_Primary_Chronological,LogisticRegression,minus_G1_transaction_value,Minus G1 (Transaction Value & Core),G1,Transaction Value & Core,26,0.8333333333333334,1.0,0.8333333333333334,0.9090909090909091,,,,6.298,0.124,0.0,0.0,0.0,,-0.005
+M5_Primary_Chronological,XGBoost,minus_G1_transaction_value,Minus G1 (Transaction Value & Core),G1,Transaction Value & Core,26,0.8333333333333334,1.0,0.8333333333333334,0.9090909090909091,,,,48.709,0.171,0.0,0.0,0.0,,0.007
+M5_Primary_Chronological,RuleBaseline,minus_G2_gas_fees,Minus G2 (Gas & Fee Mechanics),G2,Gas & Fee Mechanics,24,0.0,0.0,0.0,0.0,,,,0.0,0.058,0.0,0.0,0.0,,0.014
+M5_Primary_Chronological,LogisticRegression,minus_G2_gas_fees,Minus G2 (Gas & Fee Mechanics),G2,Gas & Fee Mechanics,24,0.8333333333333334,1.0,0.8333333333333334,0.9090909090909091,,,,7.335,0.13,0.0,0.0,0.0,,0.001
+M5_Primary_Chronological,XGBoost,minus_G2_gas_fees,Minus G2 (Gas & Fee Mechanics),G2,Gas & Fee Mechanics,24,0.8333333333333334,1.0,0.8333333333333334,0.9090909090909091,,,,49.381,0.178,0.0,0.0,0.0,,0.014
+M5_Primary_Chronological,RuleBaseline,minus_G3_calldata_interaction,Minus G3 (Calldata & Interaction),G3,Calldata & Interaction,26,0.0,0.0,0.0,0.0,,,,0.0,0.068,0.0,0.0,0.0,,0.024
+M5_Primary_Chronological,LogisticRegression,minus_G3_calldata_interaction,Minus G3 (Calldata & Interaction),G3,Calldata & Interaction,26,0.8333333333333334,1.0,0.8333333333333334,0.9090909090909091,,,,6.612,0.125,0.0,0.0,0.0,,-0.004
+M5_Primary_Chronological,XGBoost,minus_G3_calldata_interaction,Minus G3 (Calldata & Interaction),G3,Calldata & Interaction,26,0.8333333333333334,1.0,0.8333333333333334,0.9090909090909091,,,,49.217,0.17,0.0,0.0,0.0,,0.006
+M5_Primary_Chronological,RuleBaseline,minus_G4_account_history,Minus G4 (Account History Profile),G4,Account History Profile,24,0.0,0.0,0.0,0.0,,,,0.0,0.056,0.0,0.0,0.0,,0.012
+M5_Primary_Chronological,LogisticRegression,minus_G4_account_history,Minus G4 (Account History Profile),G4,Account History Profile,24,1.0,1.0,1.0,1.0,,,,6.959,0.124,0.0,0.1667,0.0909,,-0.005
+M5_Primary_Chronological,XGBoost,minus_G4_account_history,Minus G4 (Account History Profile),G4,Account History Profile,24,1.0,1.0,1.0,1.0,,,,52.061,0.161,0.0,0.1667,0.0909,,-0.003
+M5_Primary_Chronological,RuleBaseline,minus_G5_temporal_burst,Minus G5 (Temporal Burst & Flow),G5,Temporal Burst & Flow,24,0.0,0.0,0.0,0.0,,,,0.0,0.057,0.0,0.0,0.0,,0.013
+M5_Primary_Chronological,LogisticRegression,minus_G5_temporal_burst,Minus G5 (Temporal Burst & Flow),G5,Temporal Burst & Flow,24,0.8333333333333334,1.0,0.8333333333333334,0.9090909090909091,,,,6.89,0.125,0.0,0.0,0.0,,-0.004
+M5_Primary_Chronological,XGBoost,minus_G5_temporal_burst,Minus G5 (Temporal Burst & Flow),G5,Temporal Burst & Flow,24,0.8333333333333334,1.0,0.8333333333333334,0.9090909090909091,,,,48.588,0.163,0.0,0.0,0.0,,-0.001
+M5_Primary_Chronological,RuleBaseline,minus_G6_graph_topology,Minus G6 (Graph Topology & Centrality),G6,Graph Topology & Centrality,26,0.0,0.0,0.0,0.0,,,,0.0,0.058,0.0,0.0,0.0,,0.014
+M5_Primary_Chronological,LogisticRegression,minus_G6_graph_topology,Minus G6 (Graph Topology & Centrality),G6,Graph Topology & Centrality,26,0.8333333333333334,1.0,0.8333333333333334,0.9090909090909091,,,,6.33,0.127,0.0,0.0,0.0,,-0.002
+M5_Primary_Chronological,XGBoost,minus_G6_graph_topology,Minus G6 (Graph Topology & Centrality),G6,Graph Topology & Centrality,26,0.8333333333333334,1.0,0.8333333333333334,0.9090909090909091,,,,46.994,0.164,0.0,0.0,0.0,,0.0
+Balanced_Benchmark,RuleBaseline,full_30_features,Full Baseline,,None (Reference Baseline),30,0.0,0.0,0.0,0.0,0.41666666666666663,0.0,1.0,0.0,0.065,0.0,0.0,0.0,0.0,0.0
+Balanced_Benchmark,LogisticRegression,full_30_features,Full Baseline,,None (Reference Baseline),30,1.0,1.0,1.0,1.0,1.0,1.0,0.0,7.531,0.097,0.0,0.0,0.0,0.0,0.0
+Balanced_Benchmark,XGBoost,full_30_features,Full Baseline,,None (Reference Baseline),30,1.0,1.0,1.0,1.0,1.0,1.0,0.0,116.864,0.122,0.0,0.0,0.0,0.0,0.0
+Balanced_Benchmark,RuleBaseline,minus_G1_transaction_value,Minus G1 (Transaction Value & Core),G1,Transaction Value & Core,26,0.0,0.0,0.0,0.0,0.41666666666666663,0.0,1.0,0.0,0.055,0.0,0.0,0.0,0.0,-0.01
+Balanced_Benchmark,LogisticRegression,minus_G1_transaction_value,Minus G1 (Transaction Value & Core),G1,Transaction Value & Core,26,1.0,1.0,1.0,1.0,1.0,1.0,0.0,6.396,0.093,0.0,0.0,0.0,0.0,-0.004
+Balanced_Benchmark,XGBoost,minus_G1_transaction_value,Minus G1 (Transaction Value & Core),G1,Transaction Value & Core,26,1.0,1.0,1.0,1.0,1.0,1.0,0.0,108.039,0.107,0.0,0.0,0.0,0.0,-0.015
+Balanced_Benchmark,RuleBaseline,minus_G2_gas_fees,Minus G2 (Gas & Fee Mechanics),G2,Gas & Fee Mechanics,24,0.0,0.0,0.0,0.0,0.41666666666666663,0.0,1.0,0.0,0.053,0.0,0.0,0.0,0.0,-0.012
+Balanced_Benchmark,LogisticRegression,minus_G2_gas_fees,Minus G2 (Gas & Fee Mechanics),G2,Gas & Fee Mechanics,24,1.0,1.0,1.0,1.0,1.0,1.0,0.0,6.954,0.098,0.0,0.0,0.0,0.0,0.001
+Balanced_Benchmark,XGBoost,minus_G2_gas_fees,Minus G2 (Gas & Fee Mechanics),G2,Gas & Fee Mechanics,24,1.0,1.0,1.0,1.0,1.0,1.0,0.0,129.277,0.161,0.0,0.0,0.0,0.0,0.039
+Balanced_Benchmark,RuleBaseline,minus_G3_calldata_interaction,Minus G3 (Calldata & Interaction),G3,Calldata & Interaction,26,0.0,0.0,0.0,0.0,0.41666666666666663,0.0,1.0,0.0,0.055,0.0,0.0,0.0,0.0,-0.01
+Balanced_Benchmark,LogisticRegression,minus_G3_calldata_interaction,Minus G3 (Calldata & Interaction),G3,Calldata & Interaction,26,1.0,1.0,1.0,1.0,1.0,1.0,0.0,6.297,0.094,0.0,0.0,0.0,0.0,-0.003
+Balanced_Benchmark,XGBoost,minus_G3_calldata_interaction,Minus G3 (Calldata & Interaction),G3,Calldata & Interaction,26,1.0,1.0,1.0,1.0,1.0,1.0,0.0,118.91,0.107,0.0,0.0,0.0,0.0,-0.015
+Balanced_Benchmark,RuleBaseline,minus_G4_account_history,Minus G4 (Account History Profile),G4,Account History Profile,24,0.5,0.0,0.0,0.0,0.41666666666666663,0.0,0.0,0.0,0.051,0.0,0.0,0.0,0.0,-0.014
+Balanced_Benchmark,LogisticRegression,minus_G4_account_history,Minus G4 (Account History Profile),G4,Account History Profile,24,1.0,1.0,1.0,1.0,1.0,1.0,0.0,6.398,0.091,0.0,0.0,0.0,0.0,-0.006
+Balanced_Benchmark,XGBoost,minus_G4_account_history,Minus G4 (Account History Profile),G4,Account History Profile,24,1.0,1.0,1.0,1.0,1.0,1.0,0.0,105.706,0.112,0.0,0.0,0.0,0.0,-0.01
+Balanced_Benchmark,RuleBaseline,minus_G5_temporal_burst,Minus G5 (Temporal Burst & Flow),G5,Temporal Burst & Flow,24,0.5,0.0,0.0,0.0,0.5,0.0,0.0,0.0,0.053,0.0,0.0,0.0,0.0833,-0.012
+Balanced_Benchmark,LogisticRegression,minus_G5_temporal_burst,Minus G5 (Temporal Burst & Flow),G5,Temporal Burst & Flow,24,1.0,1.0,1.0,1.0,1.0,1.0,0.0,6.954,0.095,0.0,0.0,0.0,0.0,-0.002
+Balanced_Benchmark,XGBoost,minus_G5_temporal_burst,Minus G5 (Temporal Burst & Flow),G5,Temporal Burst & Flow,24,1.0,1.0,1.0,1.0,1.0,1.0,0.0,101.294,0.107,0.0,0.0,0.0,0.0,-0.015
+Balanced_Benchmark,RuleBaseline,minus_G6_graph_topology,Minus G6 (Graph Topology & Centrality),G6,Graph Topology & Centrality,26,0.0,0.0,0.0,0.0,0.41666666666666663,0.0,1.0,0.0,0.059,0.0,0.0,0.0,0.0,-0.006
+Balanced_Benchmark,LogisticRegression,minus_G6_graph_topology,Minus G6 (Graph Topology & Centrality),G6,Graph Topology & Centrality,26,1.0,1.0,1.0,1.0,1.0,1.0,0.0,7.119,0.094,0.0,0.0,0.0,0.0,-0.003
+Balanced_Benchmark,XGBoost,minus_G6_graph_topology,Minus G6 (Graph Topology & Centrality),G6,Graph Topology & Centrality,26,1.0,1.0,1.0,1.0,1.0,1.0,0.0,105.984,0.126,0.0,0.0,0.0,0.0,0.004
